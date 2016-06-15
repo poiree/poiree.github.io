@@ -44,7 +44,7 @@ navigation
 .cd-nav-trigger {
     display: block;
     position: fixed;
-    z-index: 2;
+    z-index: 3;
     bottom: 30px;
     right: 5%;
     height: 44px;
@@ -429,7 +429,7 @@ Main Components
 
 .cd-section:first-of-type > div::before {
     /* alert -> all scrolling effects are not visible on small devices */
-    content: 'Effects not visible on mobile!';
+    /*content: 'Effects not visible on mobile!';*/
     position: absolute;
     width: 100%;
     text-align: center;
@@ -858,6 +858,7 @@ Map
 -------------------------------- */
 #google-container {
     position: relative;
+    z-index: 2;
     width: 100%;
     height: 100vh;/*200px;*/
     min-height:100vh;
@@ -879,6 +880,7 @@ Map
 }
 #section4 address {
     position: absolute;
+    z-index: 3;
     width: 100%;
     bottom: 0;
     left: 0;
@@ -1059,6 +1061,9 @@ Form
 .cd-form .error {
     border-color: #e94b35 !important;
 }
+.cd-form .phone {
+
+}
 @media only screen and (min-width: 600px) {
     .cd-form div {
         /* form element wrapper */
@@ -1194,11 +1199,11 @@ Patterns - reusable parts of our design
 
 -------------------------------- */
 .cd-text-replace {
-  /* replace text with image */
-  color: transparent;
-  text-indent: 100%;
-  overflow: hidden;
-  white-space: nowrap;
+    /* replace text with image */
+    color: transparent;
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* -------------------------------- 
@@ -1207,66 +1212,66 @@ Menu trigger
 
 -------------------------------- */
 .nav-trigger {
-  position: relative;
-  z-index: 4;
-  top: 24px;
-  left: 5%;
-  height: 52px;
-  width: 52px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.8);
-  -webkit-transition: background 0.2s;
-  -moz-transition: background 0.2s;
-  transition: background 0.2s;
-  visibility: hidden;
+    position: relative;
+    z-index: 4;
+    top: 24px;
+    left: 5%;
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-transition: background 0.2s;
+    -moz-transition: background 0.2s;
+    transition: background 0.2s;
+    visibility: hidden;
 }
 .nav-trigger .icon,
 .nav-trigger .icon::before,
 .nav-trigger .icon::after {
-  /* menu icon created in CSS */
-  position: absolute;
-  background-color: #ffffff;
-  border-radius: 2px;
-  /* Force Hardware Acceleration in WebKit */
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+    /* menu icon created in CSS */
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 2px;
+    /* Force Hardware Acceleration in WebKit */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 .no-touch .nav-trigger:hover {
-  background-color: black;
+    background-color: black;
 }
 .nav-trigger .icon {
-  /* middle line of the menu icon */
-  display: inline-block;
-  width: 18px;
-  height: 2px;
-  left: 50%;
-  top: 50%;
-  bottom: auto;
-  right: auto;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -o-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  -webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
-  -moz-transition: -moz-transform 0.3s, background-color 0.3s;
-  transition: transform 0.3s, background-color 0.3s;
+    /* middle line of the menu icon */
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+    -moz-transition: -moz-transform 0.3s, background-color 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
 }
 .nav-trigger .icon::before, .nav-trigger .icon::after {
-  /* upper and lower lines of the menu icon */
-  content: '';
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: -webkit-transform 0.3s;
-  -moz-transition: -moz-transform 0.3s;
-  transition: transform 0.3s;
+    /* upper and lower lines of the menu icon */
+    content: '';
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
 }
 .nav-trigger .icon::before {
   -webkit-transform: translateY(-6px);
