@@ -107,7 +107,7 @@ Vertical navigation
 --------------------------------*/
 .cd-vertical-nav {
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     right: 5%;
     bottom: 30px;
     width: 90%;
@@ -530,7 +530,7 @@ Main Components
 .cd-arrow {
     /* lateral navigation */
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     /*right: 3%;
     top: 50%;
     bottom: auto;*/
