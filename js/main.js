@@ -582,6 +582,7 @@ jQuery(document).ready(function($){
 		if( animating == false ) {
 			animating = true;
 			navigationTrigger.add(projectsContainer).addClass('project-open');
+			$(".cd-arrow").css("visibility", "hidden");
 			openProject($(this).parent('li'));
 		}
 	});
@@ -594,6 +595,7 @@ jQuery(document).ready(function($){
 			if( navigationTrigger.hasClass('project-open') ) {
 				//close visible project
 				navigationTrigger.add(projectsContainer).removeClass('project-open');
+				$(".cd-arrow").css("visibility", "visible");
 				closeProject();
 			}
 		}	
