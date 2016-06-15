@@ -450,49 +450,8 @@ jQuery(document).ready(function($){
 			easing = 'ease',
 			animDuration = 800;
 
-		/*switch(animationName) {
-		    case 'scaleDown':
-		    	animationTop = 'scaleDown';
-		    	easing = 'easeInCubic';
-		        break;
-		    case 'rotate':
-		    	if( hijacking == 'off') {
-		    		animationTop = 'rotation.scroll';
-		    		animationBottom = 'translateNone';
-		    	} else {
-		    		animationTop = 'rotation';
-		    		easing = 'easeInCubic';
-		    	}
-		        break;
-		    case 'gallery':
-		    	animDuration = 1500;
-		    	if( middleScroll ) {
-		    		animationTop = 'scaleDown.moveUp.scroll';
-		    		animationVisible = 'scaleUp.moveUp.scroll';
-		    		animationBottom = 'scaleDown.moveDown.scroll';
-		    	} else {
-		    		animationVisible = (direction == 'next') ? 'scaleUp.moveUp' : 'scaleUp.moveDown';
-					animationTop = 'scaleDown.moveUp';
-					animationBottom = 'scaleDown.moveDown';
-		    	}
-		        break;
-		    case 'catch':
-		    	animationVisible = 'translateUp.delay';
-		        break;
-		    case 'opacity':
-		    	animDuration = 700;
-				animationTop = 'hide.scaleUp';
-				animationBottom = 'hide.scaleDown';
-		        break;
-		    case 'fixed':
-		    	animationTop = 'translateNone';
-		    	easing = 'easeInCubic';
-		        break;
-		    case 'parallax':*/
 		    	animationTop = 'translateUp.half';
 		    	easing = 'easeInCubic';
-		        /*break;
-		}*/
 
 		return [animationVisible, animationTop, animationBottom, animDuration, easing];
 	}
@@ -508,147 +467,20 @@ jQuery(document).ready(function($){
 		if( sectionOffset >= -windowHeight && sectionOffset <= 0 ) {
 			// section entering the viewport
 			translateY = (-sectionOffset)*100/windowHeight;
-			
-			/*switch(animationName) {
-			    case 'scaleDown':
-			        scale = 1;
-					opacity = 1;
-					break;
-				case 'rotate':
-					translateY = 0;
-					break;
-				case 'gallery':
-			        if( sectionOffset>= -windowHeight &&  sectionOffset< -0.9*windowHeight ) {
-			        	scale = -sectionOffset/windowHeight;
-			        	translateY = (-sectionOffset)*100/windowHeight;
-			        	boxShadowBlur = 400*(1+sectionOffset/windowHeight);
-			        } else if( sectionOffset>= -0.9*windowHeight &&  sectionOffset< -0.1*windowHeight) {
-			        	scale = 0.9;
-			        	translateY = -(9/8)*(sectionOffset+0.1*windowHeight)*100/windowHeight;
-			        	boxShadowBlur = 40;
-			        } else {
-			        	scale = 1 + sectionOffset/windowHeight;
-			        	translateY = 0;
-			        	boxShadowBlur = -400*sectionOffset/windowHeight;
-			        }
-					break;
-				case 'catch':
-			        if( sectionOffset>= -windowHeight &&  sectionOffset< -0.75*windowHeight ) {
-			        	translateY = 100;
-			        	boxShadowBlur = (1 + sectionOffset/windowHeight)*160;
-			        } else {
-			        	translateY = -(10/7.5)*sectionOffset*100/windowHeight;
-			        	boxShadowBlur = -160*sectionOffset/(3*windowHeight);
-			        }
-					break;
-				case 'opacity':
-					translateY = 0;
-			        scale = (sectionOffset + 5*windowHeight)*0.2/windowHeight;
-			        opacity = (sectionOffset + windowHeight)/windowHeight;
-					break;
-			}*/
 
 		} else if( sectionOffset > 0 && sectionOffset <= windowHeight ) {
 			//section leaving the viewport - still has the '.visible' class
 			translateY = (-sectionOffset)*100/windowHeight;
-			
-			/*switch(animationName) {
-			    case 'scaleDown':
-			        scale = (1 - ( sectionOffset * 0.3/windowHeight)).toFixed(5);
-					opacity = ( 1 - ( sectionOffset/windowHeight) ).toFixed(5);
-					translateY = 0;
-					boxShadowBlur = 40*(sectionOffset/windowHeight);
-
-					break;
-				case 'rotate':
-					opacity = ( 1 - ( sectionOffset/windowHeight) ).toFixed(5);
-					rotateX = sectionOffset*90/windowHeight + 'deg';
-					translateY = 0;
-					break;
-				case 'gallery':
-			        if( sectionOffset >= 0 && sectionOffset < 0.1*windowHeight ) {
-			        	scale = (windowHeight - sectionOffset)/windowHeight;
-			        	translateY = - (sectionOffset/windowHeight)*100;
-			        	boxShadowBlur = 400*sectionOffset/windowHeight;
-			        } else if( sectionOffset >= 0.1*windowHeight && sectionOffset < 0.9*windowHeight ) {
-			        	scale = 0.9;
-			        	translateY = -(9/8)*(sectionOffset - 0.1*windowHeight/9)*100/windowHeight;
-			        	boxShadowBlur = 40;
-			        } else {
-			        	scale = sectionOffset/windowHeight;
-			        	translateY = -100;
-			        	boxShadowBlur = 400*(1-sectionOffset/windowHeight);
-			        }
-					break;
-				case 'catch':
-					if(sectionOffset>= 0 &&  sectionOffset< windowHeight/2) {
-						boxShadowBlur = sectionOffset*80/windowHeight;
-					} else {
-						boxShadowBlur = 80*(1 - sectionOffset/windowHeight);
-					} 
-					break;
-				case 'opacity':
-					translateY = 0;
-			        scale = (sectionOffset + 5*windowHeight)*0.2/windowHeight;
-			        opacity = ( windowHeight - sectionOffset )/windowHeight;
-					break;
-				case 'fixed':
-					translateY = 0;
-					break;
-				case 'parallax':*/
+		
 					translateY = (-sectionOffset)*50/windowHeight;
-					/*break;
-
-			}*/
 
 		} else if( sectionOffset < -windowHeight ) {
 			//section not yet visible
 			translateY = 100;
 
-			/*switch(animationName) {
-			    case 'scaleDown':
-			        scale = 1;
-					opacity = 1;
-					break;
-				case 'gallery':
-			        scale = 1;
-					break;
-				case 'opacity':
-					translateY = 0;
-			        scale = 0.8;
-			        opacity = 0;
-					break;
-			}*/
-
 		} else {
 			//section not visible anymore
 			translateY = -100;
-
-			/*switch(animationName) {
-			    case 'scaleDown':
-			        scale = 0;
-					opacity = 0.7;
-					translateY = 0;
-					break;
-				case 'rotate':
-					translateY = 0;
-			        rotateX = '90deg';
-			        break;
-			    case 'gallery':
-			        scale = 1;
-					break;
-				case 'opacity':
-					translateY = 0;
-			        scale = 1.2;
-			        opacity = 0;
-					break;
-				case 'fixed':
-					translateY = 0;
-					break;
-				case 'parallax':*/
-					translateY = -50;
-					/*break;
-			}*/
 		}
 
 		return [translateY, scale, rotateX, opacity, boxShadowBlur]; 
@@ -727,6 +559,141 @@ jQuery(document).ready(function($){
 	function checkVal(inputField) {
 		( inputField.val() == '' ) ? inputField.prev('.cd-label').removeClass('float') : inputField.prev('.cd-label').addClass('float');
 	}
+	
+	//sliding pannels--------------------------------------------------------------
+	//cache DOM elements
+	var projectsContainer = $('.cd-projects-container'),
+		projectsPreviewWrapper = projectsContainer.find('.cd-projects-previews'),
+		projectPreviews = projectsPreviewWrapper.children('li'),
+		projects = projectsContainer.find('.cd-projects'),
+		navigationTrigger = $('.nav-trigger'),
+		navigation = $('.cd-primary-nav'),
+		//if browser doesn't support CSS transitions...
+		transitionsNotSupported = ( $('.no-csstransitions').length > 0);
+
+	var animating = false,
+		//will be used to extract random numbers for projects slide up/slide down effect
+		numRandoms = projects.find('li').length, 
+		uniqueRandoms = [];
+
+	//open project
+	projectsPreviewWrapper.on('click', 'a', function(event){
+		event.preventDefault();
+		if( animating == false ) {
+			animating = true;
+			navigationTrigger.add(projectsContainer).addClass('project-open');
+			openProject($(this).parent('li'));
+		}
+	});
+
+	navigationTrigger.on('click', function(event){
+		event.preventDefault();
+		
+		if( animating == false ) {
+			animating = true;
+			if( navigationTrigger.hasClass('project-open') ) {
+				//close visible project
+				navigationTrigger.add(projectsContainer).removeClass('project-open');
+				closeProject();
+			}
+		}	
+
+		if(transitionsNotSupported) animating = false;
+	});
+
+	//scroll down to project info
+	projectsContainer.on('click', '.scroll', function(){
+		projectsContainer.animate({'scrollTop':$(window).height()}, 500); 
+	});
+
+	//check if background-images have been loaded and show project previews
+	projectPreviews.children('a').bgLoaded({
+	  	afterLoaded : function(){
+	   		showPreview(projectPreviews.eq(0));
+	  	}
+	});
+
+	function showPreview(projectPreview) {
+		if(projectPreview.length > 0 ) {
+			setTimeout(function(){
+				projectPreview.addClass('bg-loaded');
+				showPreview(projectPreview.next());
+			}, 150);
+		}
+	}
+
+	function openProject(projectPreview) {
+		var projectIndex = projectPreview.index();
+		projects.children('li').eq(projectIndex).add(projectPreview).addClass('selected');
+		
+		if( transitionsNotSupported ) {
+			projectPreviews.addClass('slide-out').removeClass('selected');
+			projects.children('li').eq(projectIndex).addClass('content-visible');
+			animating = false;
+		} else { 
+			slideToggleProjects(projectPreviews, projectIndex, 0, true);
+		}
+	}
+
+	function closeProject() {
+		projects.find('.selected').removeClass('selected').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			$(this).removeClass('content-visible').off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
+			slideToggleProjects(projectsPreviewWrapper.children('li'), -1, 0, false);
+		});
+
+		//if browser doesn't support CSS transitions...
+		if( transitionsNotSupported ) {
+			projectPreviews.removeClass('slide-out');
+			projects.find('.content-visible').removeClass('content-visible');
+			animating = false;
+		}
+	}
+
+	function slideToggleProjects(projectsPreviewWrapper, projectIndex, index, bool) {
+		if(index == 0 ) createArrayRandom();
+		if( projectIndex != -1 && index == 0 ) index = 1;
+
+		var randomProjectIndex = makeUniqueRandom();
+		if( randomProjectIndex == projectIndex ) randomProjectIndex = makeUniqueRandom();
+		
+		if( index < numRandoms - 1 ) {
+			projectsPreviewWrapper.eq(randomProjectIndex).toggleClass('slide-out', bool);
+			setTimeout( function(){
+				//animate next preview project
+				slideToggleProjects(projectsPreviewWrapper, projectIndex, index + 1, bool);
+			}, 150);
+		} else if ( index == numRandoms - 1 ) {
+			//this is the last project preview to be animated 
+			projectsPreviewWrapper.eq(randomProjectIndex).toggleClass('slide-out', bool).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+				if( projectIndex != -1) {
+					projects.children('li.selected').addClass('content-visible');
+					projectsPreviewWrapper.eq(projectIndex).addClass('slide-out').removeClass('selected');
+				} else if( navigation.hasClass('nav-visible') && bool ) {
+					navigation.addClass('nav-clickable');
+				}
+				projectsPreviewWrapper.eq(randomProjectIndex).off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
+				animating = false;
+			});
+		}
+	}
+
+	//http://stackoverflow.com/questions/19351759/javascript-random-number-out-of-5-no-repeat-until-all-have-been-used
+	function makeUniqueRandom() {
+	    var index = Math.floor(Math.random() * uniqueRandoms.length);
+	    var val = uniqueRandoms[index];
+	    // now remove that value from the array
+	    uniqueRandoms.splice(index, 1);
+	    return val;
+	}
+
+	function createArrayRandom() {
+		//reset array
+		uniqueRandoms.length = 0;
+		for (var i = 0; i < numRandoms; i++) {
+            uniqueRandoms.push(i);
+        }
+	}
+	//end of sliding pannels------------------------------------------------------------------------
 });
 
 /* Custom effects registration - feature available in the Velocity UI pack */
@@ -752,114 +719,6 @@ $.Velocity
             [ { translateY: '0', opacity: '1', scale: '1', rotateX: '0', boxShadowBlur: '0'}, 1]
         ]
     });
-
-//scale down
-$.Velocity
-    .RegisterEffect("scaleDown", {
-    	defaultDuration: 1,
-        calls: [ 
-            [ { opacity: '0', scale: '0.7', boxShadowBlur: '40px' }, 1]
-        ]
-    });
-//rotation
-$.Velocity
-    .RegisterEffect("rotation", {
-    	defaultDuration: 1,
-        calls: [ 
-            [ { opacity: '0', rotateX: '90', translateY: '-100%'}, 1]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("rotation.scroll", {
-    	defaultDuration: 1,
-        calls: [ 
-            [ { opacity: '0', rotateX: '90', translateY: '0'}, 1]
-        ]
-    });
-//gallery
-$.Velocity
-    .RegisterEffect("scaleDown.moveUp", {
-    	defaultDuration: 1,
-        calls: [ 
-        	[ { translateY: '-10%', scale: '0.9', boxShadowBlur: '40px'}, 0.20 ],
-        	[ { translateY: '-100%' }, 0.60 ],
-        	[ { translateY: '-100%', scale: '1', boxShadowBlur: '0' }, 0.20 ]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("scaleDown.moveUp.scroll", {
-    	defaultDuration: 1,
-        calls: [ 
-        	[ { translateY: '-100%', scale: '0.9', boxShadowBlur: '40px' }, 0.60 ],
-        	[ { translateY: '-100%', scale: '1', boxShadowBlur: '0' }, 0.40 ]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("scaleUp.moveUp", {
-    	defaultDuration: 1,
-        calls: [ 
-        	[ { translateY: '90%', scale: '0.9', boxShadowBlur: '40px' }, 0.20 ],
-        	[ { translateY: '0%' }, 0.60 ],
-        	[ { translateY: '0%', scale: '1', boxShadowBlur: '0'}, 0.20 ]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("scaleUp.moveUp.scroll", {
-    	defaultDuration: 1,
-        calls: [ 
-        	[ { translateY: '0%', scale: '0.9' , boxShadowBlur: '40px' }, 0.60 ],
-        	[ { translateY: '0%', scale: '1', boxShadowBlur: '0'}, 0.40 ]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("scaleDown.moveDown", {
-    	defaultDuration: 1,
-        calls: [ 
-        	[ { translateY: '10%', scale: '0.9', boxShadowBlur: '40px'}, 0.20 ],
-        	[ { translateY: '100%' }, 0.60 ],
-        	[ { translateY: '100%', scale: '1', boxShadowBlur: '0'}, 0.20 ]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("scaleDown.moveDown.scroll", {
-    	defaultDuration: 1,
-        calls: [ 
-        	[ { translateY: '100%', scale: '0.9', boxShadowBlur: '40px' }, 0.60 ],
-        	[ { translateY: '100%', scale: '1', boxShadowBlur: '0' }, 0.40 ]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("scaleUp.moveDown", {
-    	defaultDuration: 1,
-        calls: [ 
-        	[ { translateY: '-90%', scale: '0.9', boxShadowBlur: '40px' }, 0.20 ],
-        	[ { translateY: '0%' }, 0.60 ],
-        	[ { translateY: '0%', scale: '1', boxShadowBlur: '0'}, 0.20 ]
-        ]
-    });
-//catch up
-$.Velocity
-    .RegisterEffect("translateUp.delay", {
-    	defaultDuration: 1,
-        calls: [ 
-            [ { translateY: '0%'}, 0.8, { delay: 100 }],
-        ]
-    });
-//opacity
-$.Velocity
-    .RegisterEffect("hide.scaleUp", {
-    	defaultDuration: 1,
-        calls: [ 
-            [ { opacity: '0', scale: '1.2'}, 1 ]
-        ]
-    });
-$.Velocity
-    .RegisterEffect("hide.scaleDown", {
-    	defaultDuration: 1,
-        calls: [ 
-            [ { opacity: '0', scale: '0.8'}, 1 ]
-        ]
-    });
 //parallax
 $.Velocity
     .RegisterEffect("translateUp.half", {
@@ -868,3 +727,42 @@ $.Velocity
             [ { translateY: '-50%'}, 1]
         ]
     });
+    
+ /*
+ * BG Loaded
+ * Copyright (c) 2014 Jonathan Catmull
+ * Licensed under the MIT license.
+ */
+ (function($){
+ 	$.fn.bgLoaded = function(custom) {
+	 	var self = this;
+
+		// Default plugin settings
+		var defaults = {
+			afterLoaded : function(){
+				this.addClass('bg-loaded');
+			}
+		};
+
+		// Merge default and user settings
+		var settings = $.extend({}, defaults, custom);
+
+		// Loop through element
+		self.each(function(){
+			var $this = $(this),
+				bgImgs = $this.css('background-image').split(', ');
+			$this.data('loaded-count',0);
+			$.each( bgImgs, function(key, value){
+				var img = value.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+				$('<img/>').attr('src', img).load(function() {
+					$(this).remove(); // prevent memory leaks
+					$this.data('loaded-count',$this.data('loaded-count')+1);
+					if ($this.data('loaded-count') >= bgImgs.length) {
+						settings.afterLoaded.call($this);
+					}
+				});
+			});
+
+		});
+	};
+})(jQuery);
