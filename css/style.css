@@ -538,7 +538,7 @@ Main Components
     /*right: 3%;
     top: 50%;
     bottom: auto;*/
-    bottom: 3%;
+    bottom: 0;/*3%;*/
     left: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -867,19 +867,34 @@ Main Components
     width: 100%;
     z-index: 5;
     left: 0;
-    height: 50px;
+    height: 15%;/*50px;*/
     background: rgba(58, 57, 63, 0.6);
     -webkit-transition: background 0.2s;
     -moz-transition: background 0.2s;
     transition: background 0.2s;
 }
-#main-menu li {
-    display: inline;
-    /*width: 15%;*/
+#main-menu ul {
+    margin-top: 2%;
 }
-#main-menu li div {
-    display: inline;
+#main-menu ul li {
+    display: inline-block;
+    /*float: left;*/
     width: 15%;
+    text-align: center;
+}
+#main-menu ul li a {
+    /*display: block;
+    width: 15%;*/
+    color: white;
+}
+main-menu ul li a span {
+    /*color: white;*/
+}
+#main-menu ul li:fist-of-type, #main-menu ul li:nth-of-type(2), #main-menu ul li:nth-of-type(3) {
+    float: left;
+}
+#main-menu ul li:nth-of-type(4), #main-menu ul li:nth-of-type(5), #main-menu ul li:nth-of-type(6) {
+    float: right;
 }
 
 /* -------------------------------- 
