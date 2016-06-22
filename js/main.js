@@ -1,5 +1,6 @@
 jQuery(document).ready(function($){
 	
+	// maps------------------------------------------------------------------------------------------------------------
 	//set your google maps parameters
 	var latitude = 50.44959704,
 		longitude = 30.5094637,
@@ -229,7 +230,7 @@ jQuery(document).ready(function($){
 
   	//insert the zoom div on the top left of the map
   	map.controls[google.maps.ControlPosition.LEFT_TOP].push(zoomControlDiv);
-
+	// end of maps--------------------------------------------------------------------------------------------------------
 	
 	//variables
 	var hijacking= $('body').data('hijacking'),
@@ -246,6 +247,7 @@ jQuery(document).ready(function($){
     	prevArrow = arrowNav.find('a.cd-prev'),
     	nextArrow = arrowNav.find('a.cd-next');
 
+	//( sectionsAvailable.filter('.visible').is(':first-of-type') ) ? verticalNav.addClass('hidden') : verticalNav.removeClass('hidden');
 	
 	//check the media query and bind corresponding events
 	var MQ = deviceType(),
@@ -386,6 +388,10 @@ jQuery(document).ready(function($){
         }
 
         resetScroll();
+        if (!(sectionsAvailable.filter('.visible').is(':first-of-type'))) {
+			verticalNav.css('visibility', 'visible');
+		}
+		else verticalNav.css('visibility', 'hidden');
     }
 
     function nextSection(event) {
@@ -409,7 +415,12 @@ jQuery(document).ready(function($){
             actual = actual +1;
         }
         resetScroll();
+        if (!(sectionsAvailable.filter('.visible').is(':first-of-type'))) {
+			verticalNav.css('visibility', 'visible');
+		}
+		else verticalNav.css('visibility', 'hidden');
     }
+    
 
     function unbindScroll(section, time) {
     	//if clicking on navigation - unbind scroll and animate using custom velocity animation
@@ -533,6 +544,10 @@ jQuery(document).ready(function($){
 				: navigationItem.removeClass('active');
 		});
 		scrolling = false;
+		if ($('.cd-section').filter('.visible').is(':first-of-type')) {
+			verticalNav.css('visibility', 'hidden');
+		}
+		else verticalNav.css('visibility', 'visible');
 	}
 
 	function smoothScroll(target) {
