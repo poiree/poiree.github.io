@@ -4,194 +4,316 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href='https://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
   	
 	<title>GUTOVSKA & PARTNERS</title>
 </head>
+<!-- hijacking: on/off - animation: none/scaleDown/rotate/gallery/catch/opacity/fixed/parallax -->
 
-<body>
-	<section class="cd-intro">
-		<div class="cd-intro-content mask">
-			<h1 data-content="GUTOVSKA & PARTNERS"><span>GUTOVSKA & PARTNERS</span></h1>
+<body data-hijacking="off" data-animation="parallax">
+	<nav class="cd-vertical-nav">
+		<ul>
+			<li><a href="#section1" class="active"><span class="label">Головна</span></a></li>
+			<li><a href="#section2"><span class="label">Індустрії</span></a></li>
+			<li><a href="#section3"><span class="label">Практики</span></a></li>
+			<li><a href="#section4"><span class="label">Карта</span></a></li>
+			<li><a href="#section5"><span class="label">Контакти</span></a></li>
+			<!--<li><a href="#0"><span class="label">facebook</span></a></li>
+			<li><a href="#0"><span class="label">twitter</span></a></li>
+			<li><a href="#0"><span class="label">linkedin</span></a></li>-->
+		</ul>
+	</nav><!-- .cd-vertical-nav -->
+		
+	<button class="cd-nav-trigger cd-image-replace"><span aria-hidden="true"></span></button>
+		
+	<section class="cd-section visible cd-intro" id="section1">
+		<div class="cd-intro-content reveal">
+			<h1 data-content="GUTOVSKA & PARTNERS">GUTOVSKA & PARTNERS</h1>
 			<div class="action-wrapper">
 				<p>
-					<a class="cd-btn main-action">LAW COMPANY</a>
-					<!--<a href="#0" class="cd-btn">Learn More</a>-->
+					ЮРИДИЧНА КОМПАНІЯ
 				</p>
 			</div>
+			<!--<div id="main-menu">
+				<ul>
+					<li><a href="#section1" class="active"><span class="label">Головна</span></a></li>
+					<li><a href="#section2"><span class="label">Індустрії</span></a></li>
+					<li><a href="#section3"><span class="label">Практики</span></a></li>
+					<li><a href="#section3"><span class="label">Практики</span></a></li>
+					<li><a href="#section4"><span class="label">Карта</span></a></li>
+					<li><a href="#section5"><span class="label">Контакти</span></a></li>
+				</ul>
+			</div>-->
 		</div>
 	</section>
 
-	<section id="cd-timeline" class="cd-container">
-		<nav>
+	<section class="cd-section" id="section2">
+		<div id="cd-main-content">
+			<div id="cd-intro">
+				<h3>Команда Gutovska&Partners усвідомлює важливість стабільного розвитку бізнесу наших клієнтів, 
+				тому у нашій команді працюють лише досвідчені професіонали, що консультують з приводу розробки корпоративної політики, 
+				bluebooks, правового забезпечення найму працівників, їх страхування, укладення трудових і цивільно-правових договорів, 
+				отримання ліцензій, спеціальних дозвільних документів для провадження господарської діяльності, структуризації підприємства, 
+				будь-яких інших питань, що виникають у процесі ведення бізнесу, 
+				дотримуючись політики full coverage у найбільш інноваційних сферах бізнесу.<br>
+					<a class="cd-menu-trigger button" href="#main-nav">Детальніше</a>
+				</h3>
+				<div class="cd-blurred-bg"></div>
+			</div> <!-- cd-intro -->
+		</div>
+	
+		<div class="cd-shadow-layer"></div>
+	
+		<nav id="main-nav">
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li><!--Step #4<br><small><i>Description of the step</i></small>--></li>
-				<li></li>
+				<li><a href="#first"><span>АГРОБІЗНЕС</span></a></li>
+				<li><a href="#second"><span>АЛЬТЕРНАТИВНІ ДЖЕРЕЛА ЕНЕРГІЇ</span></a></li>
+				<li><a href="#third"><span>МЕДІА ТА МИСТЕЦТВО</span></a></li>
+				<li><a href="#forth"><span>ІНФОРМАЦІЙНІ ТЕХНОЛОГІЇ</span></a></li>
 			</ul>
+			<a href="#0" class="cd-close-menu">Close<span></span></a>
 		</nav>
-		<div class="cd-timeline-block" id="first">
-			<div class="cd-timeline-img cd-picture">
-				<img src="img/cd-icon-picture.svg" alt="Picture">
-			</div> <!-- cd-timeline-img -->
-
-			<div class="cd-timeline-content">
-				<h2>Introduction</h2>
-				<p>Gutovska&Partners is a law firm consolidated best-talented legal experts and barristers to provide exclusively 
-				professional legal services with precise attention to every case. Ukraine stept on the way to European values, 
-				and it's time for European-class legal business.
-				We offer top-tier full-coverage legal advice in most innovative and modern business areas such as Agriculture, 
-				IT and Outsourcing, Energy and Renewables sector, Media and Visual Art.</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-			</div> <!-- cd-timeline-content -->
-		</div> <!-- cd-timeline-block -->
-
-		<div class="cd-timeline-block" id="second">
-			<div class="cd-timeline-img cd-movie">
-				<img src="img/cd-icon-movie.svg" alt="Movie">
-			</div> <!-- cd-timeline-img -->
-
-			<div class="cd-timeline-content">
-				<h2>Practices</h2>
-				<p>Within the practice of Business Consuling GUTOVSKA & Partners offers wide range of services business needs 
-				to operate effectively in Ukraine tense environment conditions. Yes, on the early stages of businesses we provide advice 
-				on business registering, structuring, RO settling, development of civil contracts for the stuff and confidence assuring 
-				contracts for employees. We provide top-tier services as for medium as for large Ukraine and foreign based companies, 
-				taking into consideration the pecularities and features of every client.<br>
-				GUTOVSKA & Partners offers unique for Ukraine services of drafting all the internal regulations specifically for every clients, 
-				including documents needed to pass for labor sevice of Ukraine, Ministry of Agriculture and other government authorities. 
-				We provide all the services with careful attention to client's needs and wishes and our associates are happy become truly 
-				loyal assistants in every case. Sure, the services as in-house counsil are available. We are proud of careful legal research 
-				and briefs writing our associates are capable of. You may wish to outsourse the everyday legal issues of your business 
-				to GUTOVSKA & Partners or obtain the advice from time to time, both options are available.<br>
-				Practice also provide legal services on tax, including tax optimizing and rebamesent of a company to different jurisdiction. 
-				One of popular solutions our clients ask for is rebasement to the Eastern Europe, although GUTOVSKA & Partners work with 
-				different jurisdictions too.<br>
-				We are proud of strategic solutions our company provides - our associates try to forecast the consequenses of every legal act 
-				our clients ask to review. This includes contracts reviewing, official reporting to government and local authorities, 
-				establishing new partnerships and policies etc. The quality of legal advice for business is the thing we worked on for a long time 
-				and value as our main reputation asset.<br></p>
-				<p>Corporate Governance Practice provides legal advice on issues related to all the processes and mechanisms of directing 
-				of the corporations and other types of partnerships under Ukrainian legislation. Yes, we offer legal support of income sharing, 
-				shares sale and corporate listing, distribution of rights and obligation between shareholders, board of directors management, 
-				legal advice on monitoring the activity of CEOs and agents and other legal advice to guarantee the best interest of owners 
-				of a corporation. GUTOVSKA & Partners is the best law company to support the board of directors meetings and to secure the 
-				legal compliance.<br>
-				Most of the clients of Corporate governance practice of GUTOVSKA & Partners are foreign based, so we are pleased to assure you 
-				that every possible solution to communicate on distance are available, including secure emails, messengers and video conferences. 
-				The capacity of our company allows us to provide advice in English, Polish, Spanish and German.<br>
-				Also it is important that we are consulting on every issue with deep knowledge not only Ukrainian, but International Corporate Law 
-				and Conflict of Laws. No matter if your corporation is Poland or UK based with Representative Office in Ukraine or a company 
-				registered in Ukraine, GUTOVSKA & Partners is able to secure all the legal aspects of corporate governance.</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-			</div> <!-- cd-timeline-content -->
-		</div> <!-- cd-timeline-block -->
-
-		<div class="cd-timeline-block" id="third">
-			<div class="cd-timeline-img cd-picture">
-				<img src="img/cd-icon-picture.svg" alt="Picture">
-			</div> <!-- cd-timeline-img -->
-
-			<div class="cd-timeline-content">
-				<h2>Industries</h2>
-				<p>GUTOVSKA & Partners team is aware of the importance of stable development of our clients' business, 
-				that is why only experienced professionals work in the company. We provide legal advice on wide range of issues, 
-				including labor agreements, corporate policy, civil agreements, business contrancts, tax, licences and certificates 
-				for business operations obtaining, structuring of business, intelectual property, insurance and corporate governance 
-				and other issues, considering ourselves focusing on four highly important for Ukraine business industries.</p>
-				<a href="#0" class="cd-read-more">Read more</a>
-			</div> <!-- cd-timeline-content -->
-		</div> <!-- cd-timeline-block -->
-
-		<div class="cd-timeline-block" id="forth">
-			<div class="cd-timeline-img cd-location">
-				<img src="img/cd-icon-location-1.svg" alt="Location">
-			</div> <!-- cd-timeline-img -->
-
-			<div class="cd-timeline-content">
-				<h2>Map</h2>
-				<!-- #google-container will contain the map  -->
-				<div id="google-container"></div>
-				<!-- #cd-zoom-in and #zoom-out will be used to create our custom buttons for zooming-in/out -->
-				<div id="cd-zoom-in"></div>
-				<div id="cd-zoom-out"></div>
-				<address>м. Київ, вул. Івана Франка, 12/15</address> 
-			</div> <!-- cd-timeline-content -->
-		</div> <!-- cd-timeline-block -->
-
-		<div class="cd-timeline-block" id="fifth">
-			<div class="cd-timeline-img cd-location">
-				<img src="img/cd-icon-location-1.svg" alt="Location">
-			</div> <!-- cd-timeline-img -->
-
-			<div class="cd-timeline-content">
-				<div>
-					<form class="cd-form floating-labels">
-						<fieldset>
-							<legend>Для зв'язку з нами, будь ласка, заповніть форму.</legend>
-				
-							<!--<div class="error-message">
-								<p>Please enter a valid email address</p>
-							</div>-->
-				
-							<div class="user-data">
-								<div class="icon">
-									<label class="cd-label" for="cd-name">Ім'я</label>
-									<input class="user" type="text" name="cd-name" id="cd-name" required>
-							    </div> 
-					
-							    <div class="icon">
-							    	<label class="cd-label" for="cd-phone">Телефон</label>
-									<input class="phone" type="text" name="cd-phone" id="cd-phone" required>
-							    </div> 
-					
-							    <div class="icon">
-							    	<label class="cd-label" for="cd-email">E-mail</label>
-									<input class="email error" type="email" name="cd-email" id="cd-email" required>
-							    </div>
-							</div>
-				
-							<div class="icon">
-								<label class="cd-label" for="cd-textarea">Повідомлення</label>
-				      			<textarea class="message" name="cd-textarea" id="cd-textarea" required></textarea>
-							</div>
-				
-							<div>
-						      	<input type="submit" value="Надіслати">
-						    </div>
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div> <!-- cd-timeline-block -->
-
-		<!--<div class="cd-timeline-block">
-			<div class="cd-timeline-img cd-movie">
-				<img src="img/cd-icon-movie.svg" alt="Movie">
-			</div> <!-- cd-timeline-img -->
-
-			<!--<div class="cd-timeline-content">
-				<h2>Final Section</h2>
-				<p>This is the content of the last section</p>
-				<span class="cd-date">Feb 26</span>
-			</div> <!-- cd-timeline-content -->
-		<!--</div> --><!-- cd-timeline-block -->
-	</section> <!-- cd-timeline -->
 	
-	<div class="social">
-		<a href="#0"></a>
-		<a href="#0"></a>
-		<a href="#0"></a>
-	</div>
+		<div class="industry" id="first">
+			<p><img src="img/ind-1.jpg">Ми розуміємо, скільки зусиль Ви прикладаєте для успішного розвитку 
+			Вашого агробізнесу та надаємо юридичні послуги найвищого рівня для того, аби Ви стали ще успішнішими.
+			Супровід операцій з акумулювання земельних ресурсів, розробка договорів оренди паїв та земельних ділянок, договорів з партнерами, 
+			постачальниками, підрядниками, зовнішньоекономічних договорів, проведення переговорів та супровід процесу укладення договору, 
+			супровід найму та вивільнення працівників, консультації з корпоративних прав.
+			Представництво інтересів клієнтів у спорах з органами державної влади та місцевого самоврядування, у тому числі з Фіскальною службою, 
+			прокуратурою, Держсільгоспінспекцією. 
+			Представництво та захист інтересів клієнтів у суді, як в Україні, так і в судах іноземних юрисдикцій. Юристи Gutovska&Partners 
+			атестовані до практики у Європейському Союзі, Грузії, Російській Федерації та Білорусі.</p>
+			<a href="#0" class="cd-close-menu">Close<span></span></a>
+		</div>
 	
-<script src="js/jquery-2.1.4.js"></script>
-<script src="js/main.js"></script> <!-- Resource jQuery -->
-<script src="js/modernizr.js"></script> <!-- Modernizr -->
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<div class="industry" id="second">
+			<p><img src="img/ind-2.jpg">Наши клиенты доказывают, что производство механизмов альтернативных источников энергии и их обслуживания 
+			при взвешенном ведении бизнеса и благодаря динамичности отрасли и высоком общественном спроса все больше развивается в Украине.
+			Мы делаем все для того, чтобы Ваш бизнес получил максимально благоприятного воздействия со стороны государства, 
+			предоставляя как внутренние консультации, так и представляя Ваши интересы в отношениях с органами государственной власти.
+			Мы предоставляем юридические услуги по патентования, лицензирования, получения других видов разрешений, 
+			осуществляем защиту инновационных технологий. Также Gutovska & Partners предлагает сопровождение экспортно-импортных операций, 
+			разработку шаблонных договоров с потребителями и контрагентами, консультации по корпоративным и трудовых отношений.
+			Отдельная команда компании работает в сфере получения налоговых льгот, бюджетных дотаций, привлечения грантового финансирования, 
+			возврат НДС для предприятий, работающих в сфере Альтернативных источников энергии.</p>
+			<a href="#0" class="cd-close-menu">Close<span></span></a>
+		</div>
+	
+		<div class="industry" id="third">
+			<p><img src="img/ind-3.jpg">Здійснюючи юридичний супровід бізнесу у сфері "Медіа та Візуальне мистецтво", 
+			ми маємо на меті забезпечити максимально ефективний правовий захист інтересів  клієнтів як учасників медіа-ринку.
+			Компанія Gutovska&Partners надає консультації з питань застосування рекламного законодавства, створення, придбання 
+			та використання об'єктів 
+			авторського права і суміжних прав, а також щодо прихованої та недобросовісної реклами.
+			Наші юристи забезпечать надійний правовий супровід медіапроектів, інвестиційних проектів, рекламних заходів, поточної діяльності засобів 
+			масової інформації, рекламодавців, телерадіоорганізацій, видавництв.
+			Ми представлятимемо Ваші інтереси у відносинах із органами державної влади, контролюючими органами, у судовому та позасудовому порядку. 
+			</p>
+			<a href="#0" class="cd-close-menu">Close<span></span></a>
+		</div>
+	
+		<div class="industry" id="forth">
+			<p><img src="img/ind-4.jpg">Натхненна команда юристів в IT індустрії компанії Gutovska&Partners консультує з приводу здійснення 
+			підприємницької діяльності, корпоративних питань, розробки договорів, реєстрації патентів та винаходів, експорту послуг і товарів, 
+			реєстрації баз даних, питань трудових правовідносин та оподаткування з урахуванням специфіки саме Вашого бізнесу.
+			Так, наші юристи спілкуються англійською, німецькою, французькою, іспанською, українською та російською та можуть працювати як повністю 
+			обслуговуючи всі юридичні справи Вашого бізнесу, так і консультуючи з окремих питань, що Вас цікавлять.
+			Також ми презентуємо ІТ компанії в українських та міжнародних судах, медіаційних органах. Професійні неготіатори, які працюють в команді 
+			Gutovska&Partners, можуть бути залучені до процесу переговорів, як щодо вирішення конфліктів, так і щодо укладання угод. </p>
+			<a href="#0" class="cd-close-menu">Close<span></span></a>
+		</div>
+	</section>
+
+	<section class="cd-section" id="section3">
+		<!--<a class="nav-trigger cd-text-replace">Menu<span aria-hidden="true" class="icon"></span></a>-->
+		<a href="#0" class="cd-close-menu cd-text-replace">Close<span></span></a>
+	
+		<div class="cd-projects-container">
+			<ul class="cd-projects-previews">
+				<li>
+					<a href="#0">
+						<div class="cd-project-title">
+							<h2>Бізнес-консалтинг</h2>
+							<button class="button">Детальніше</button>
+						</div>
+					</a>
+				</li>
+	
+				<li>
+					<a href="#0">
+						<div class="cd-project-title">
+							<h2>Вирішення спорів</h2>
+							<button class="button">Детальніше</button>
+						</div>
+					</a>
+				</li>
+				
+				<li>
+					<a href="#0">
+						<div class="cd-project-title">
+							<h2>Супровід угод<br>і правочинів</h2>
+							<button class="button">Детальніше</button>
+						</div>
+					</a>
+				</li>
+				
+				<li>
+					<a href="#0">
+						<div class="cd-project-title">
+							<h2>Корпоративне<br>право</h2>
+							<button class="button">Детальніше</button>
+						</div>
+					</a>
+				</li>
+			</ul> <!-- .cd-projects-previews -->
+	
+			<ul class="cd-projects">
+				<li>
+					<div class="preview-image">
+						<div class="cd-project-title">
+							<h2>Бізнес-консалтинг</h2>
+						</div> 
+					</div>
+	
+					<div class="cd-project-info">
+						<p>
+							При Full-coverage обслуговуванні бізнесу команда Gutovska&Partners працює як Ваш юридичний департамент 
+							і як зовнішня юридична компанія, що представляє Ваші інтереси у суді, відносинах з органами державної влади 
+							та місцевого самоврядування.
+							Ми здійснюємо повний юридичний супровід господарської діяльності діяльності клієнта у всіх сферах: 
+							внутрішньокорпоративних відносинах, трудових відносинах, господарських відносинах з контрагентами та оподаткуванні.
+						</p>
+					</div> <!-- .cd-project-info -->
+				</li>
+	
+				<li>
+					<div class="preview-image">
+						<div class="cd-project-title">
+							<h2>Вирішення спорів</h2>
+						</div> 
+					</div>
+	
+					<div class="cd-project-info">
+						<p>
+							Компанія Gutovska&Partners прагне аби всі спірні питання, які виникають у процесі ведення бізнесу наших клієнтів, 
+							вирішувалися максимально швидко та ефективно. Ми здійснюємо захист та представництво Ваших інтересів у національних 
+							та іноземних судових органах, у Міжнародному комерційному арбітражі, а також в порядку медіації. Категорії спорів, 
+							вирішення яких забезпечать юристи нашої компанії, різноманітні - дефамаційні, трудові, податкові, корпоративні, 
+							а також з органами державної влади та місцевого самоврядування.
+						</p>
+					</div> <!-- .cd-project-info -->
+				</li>
+	
+				<li>
+					<div class="preview-image">
+						<div class="cd-project-title">
+							<h2>Супровід угод і правочинів</h2>
+						</div> 
+					</div>
+	
+					<div class="cd-project-info">
+						<p>
+							Компанія Gutovska&Partners забезпечить для Вас не лише розробку повного спектру угод, 
+							а й юридичний супровід у процесі їх укладання, та вирішення усіх спірних питань, 
+							що можуть виникнути з таких договорів і контрактів. Ми представлятимемо Вас у відносинах із контрагентами, 
+							у процесі ведення переговорів. Висококваліфіковані юристи Gutovska&Partners нададуть найповніше консультування 
+							щодо відповідності угод вимогам національного та міжнародного законодавства, допоможуть оцінити можливі правові 
+							та фінансові ризики.
+						</p>
+					</div> <!-- .cd-project-info -->
+				</li>
+	
+				<li>
+					<div class="preview-image">
+						<div class="cd-project-title">
+							<h2>Корпоративне право</h2>
+						</div> 
+					</div>
+	
+					<div class="cd-project-info">
+						<p>
+							Однією з найважливіших складових успішного ведення бізнесу нашими клієнтами є ефективна корпоративна політика. 
+							Юристи Gutovska&Partners забезпечать розробку її найоптимальнішої моделі саме для Вашого підприємства. 
+							Ми надаємо послуги із правового супроводу створення, реструктуризації, злиття та поглинання, ліквідації компаній, 
+							удосконалення системи корпоративного управління, відчуження корпоративних прав, процесу банкрутства.
+						</p>
+					</div> <!-- .cd-project-info -->
+				</li>
+			</ul> <!-- .cd-projects -->
+	
+			<button class="scroll cd-text-replace">Scroll</button>
+		</div> <!-- .cd-project-container -->
+	</section>
+
+	<section class="cd-section" id="section4">
+		<div>
+			<h2>Карта</h2>
+		</div>
+		<!-- #google-container will contain the map  -->
+		<div id="google-container"></div>
+		<!-- #cd-zoom-in and #zoom-out will be used to create our custom buttons for zooming-in/out -->
+		<div id="cd-zoom-in"></div>
+		<div id="cd-zoom-out"></div>
+		<address>м. Київ, вул. Івана Франка, 12/15</address> 
+	</section>
+
+	<section class="cd-section" id="section5">
+		<div>
+			<form class="cd-form floating-labels">
+				<fieldset>
+					<legend>Для зв'язку з нами, будь ласка, заповніть форму.</legend>
+		
+					<!--<div class="error-message">
+						<p>Please enter a valid email address</p>
+					</div>-->
+		
+					<div class="user-data">
+						<div class="icon">
+							<label class="cd-label" for="cd-name">Ім'я</label>
+							<input class="user" type="text" name="cd-name" id="cd-name" required>
+					    </div> 
+			
+					    <div class="icon">
+					    	<label class="cd-label" for="cd-phone">Телефон</label>
+							<input class="phone" type="text" name="cd-phone" id="cd-phone" required>
+					    </div> 
+			
+					    <div class="icon">
+					    	<label class="cd-label" for="cd-email">E-mail</label>
+							<input class="email error" type="email" name="cd-email" id="cd-email" required>
+					    </div>
+					</div>
+		
+					<div class="icon">
+						<label class="cd-label" for="cd-textarea">Повідомлення</label>
+		      			<textarea class="message" name="cd-textarea" id="cd-textarea" required></textarea>
+					</div>
+		
+					<div>
+				      	<input type="submit" value="Надіслати">
+				    </div>
+				</fieldset>
+			</form>
+		</div>
+	</section>
+
+	<nav>
+		<ul class="cd-arrow">
+			<li><a href="#0" class="cd-prev inactive">Next</a></li>
+			<li><a href="#0" class="cd-next">Prev</a></li>
+		</ul>
+	</nav> <!-- .cd-vertical-nav -->
+	
+	<script src="js/jquery-2.1.4.js"></script>
+	<script src="js/velocity.min.js"></script>
+	<script src="js/velocity.ui.min.js"></script>
+	<script src="js/main.js"></script> <!-- Resource jQuery -->
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<!--<script src="https://maps.googleapis.com/maps/api/js?v=3.15&sensor=false"></script>-->
 </body>
 </html>
