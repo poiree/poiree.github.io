@@ -558,11 +558,11 @@ jQuery(document).ready(function($){
 	
 	//sliding pannels--------------------------------------------------------------
 	//cache DOM elements
-	/*var projectsContainer = $('.cd-projects-container'),
+	var projectsContainer = $('.cd-projects-container'),
 		projectsPreviewWrapper = projectsContainer.find('.cd-projects-previews'),
 		projectPreviews = projectsPreviewWrapper.children('li'),
 		projects = projectsContainer.find('.cd-projects'),
-		navigationTrigger = $('#section4 .cd-close-menu'),
+		navigationTrigger = $('#section5 .cd-close-menu'),
 		//if browser doesn't support CSS transitions...
 		transitionsNotSupported = ( $('.no-csstransitions').length > 0);
 
@@ -670,7 +670,7 @@ jQuery(document).ready(function($){
 				} /*else if( navigation.hasClass('nav-visible') && bool ) {
 					navigation.addClass('nav-clickable');
 				}*/
-				/*projectsPreviewWrapper.eq(randomProjectIndex).off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
+				projectsPreviewWrapper.eq(randomProjectIndex).off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
 				animating = false;
 			});
 		}
@@ -691,7 +691,7 @@ jQuery(document).ready(function($){
 		for (var i = 0; i < numRandoms; i++) {
             uniqueRandoms.push(i);
         }
-	}*/
+	}
 	
 	var additional = '',
 		quantity = $('#preview-coverflow>div').length,
@@ -733,7 +733,9 @@ jQuery(document).ready(function($){
 	
 	
 	var sliderContainers = $('.cd-slider-wrapper');
-	$('.cd-slider .image').append('<h1>ПРАКТИКИ</h1>');
+	if($(window).width() > 767) {
+		$('.cd-slider .image').append('<h1>ПРАКТИКИ</h1>');
+	}
 	
 	$('.slider-for').slick({
 		slidesToShow: 1,

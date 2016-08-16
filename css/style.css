@@ -83,10 +83,10 @@ Main Components
     background-image: url("../img/img-1.jpg");
 }
 [data-animation="parallax"] .cd-section:nth-of-type(4) > div {
-    /*background-image: url("../img/img-3.jpg");*/
+    background-image: url("../img/white.jpg");
 }
 [data-animation="parallax"] .cd-section:nth-of-type(5) > div {
-    background-image: url("../img/bg-img.jpg");
+    background-image: url("../img/white.jpg");
 }
 [data-animation="parallax"] .cd-section:nth-of-type(6) > div {
     background-image: url("../img/img-4.jpg");
@@ -1020,7 +1020,7 @@ Patterns - reusable parts of our design
 Menu trigger
 
 -------------------------------- */
-#section4 .cd-close-menu {
+#section5 .cd-close-menu {
     position: relative;
     z-index: 1;
     top: 24px;
@@ -1035,7 +1035,7 @@ Menu trigger
     white-space: nowrap;
     visibility: hidden;
 }
-#section4 .cd-close-menu::before, #section4 .cd-close-menu::after {
+#section5 .cd-close-menu::before, #section5 .cd-close-menu::after {
     content: '';
     display: inline-block;
     position: absolute;
@@ -1051,35 +1051,35 @@ Menu trigger
     -moz-transition-duration: 0.3s;
     transition-duration: 0.3s;
 }
-#section4 .cd-close-menu::before {
+#section5 .cd-close-menu::before {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-#section4 .cd-close-menu::after {
+#section5 .cd-close-menu::after {
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -ms-transform: rotate(135deg);
     -o-transform: rotate(135deg);
     transform: rotate(135deg);
 }
-.no-touch #section4 .cd-close-menu:hover::before {
+.no-touch #section5 .cd-close-menu:hover::before {
     -webkit-transform: rotate(225deg);
     -moz-transform: rotate(225deg);
     -ms-transform: rotate(225deg);
     -o-transform: rotate(225deg);
     transform: rotate(225deg);
 }
-.no-touch #section4 .cd-close-menu:hover::after {
+.no-touch #section5 .cd-close-menu:hover::after {
     -webkit-transform: rotate(315deg);
     -moz-transform: rotate(315deg);
     -ms-transform: rotate(315deg);
     -o-transform: rotate(315deg);
     transform: rotate(315deg);
 }
-.no-js #section4 .cd-close-menu {
+.no-js #section5 .cd-close-menu {
     display: none;
 }
 
