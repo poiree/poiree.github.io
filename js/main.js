@@ -1,4 +1,6 @@
 jQuery(document).ready(function($){
+	$('.cd-intro-content').css('transition', '1s ease-in');
+	
 	//variables
 	var hijacking= $('body').data('hijacking'),
 		animationType = $('body').data('animation'),
@@ -59,6 +61,7 @@ jQuery(document).ready(function($){
 					prevSection();
 				}
 			});
+			
 			//set navigation arrows visibility
 			checkNavigation();
 		} else if( MQ == 'mobile' ) {
@@ -186,6 +189,7 @@ jQuery(document).ready(function($){
 
             actual = actual +1;
         }
+        $('.cd-intro-content').css('transition', '');
         resetScroll();
     }
 
@@ -693,6 +697,8 @@ jQuery(document).ready(function($){
         }
 	}
 	
+	
+	//coverflow practices------------------------------------------------------------------------
 	var additional = '',
 		quantity = $('#preview-coverflow>div').length,
 		cycles = 4,
@@ -811,7 +817,7 @@ jQuery(document).ready(function($){
 		return ( container.parents('.touch').length > 0 );
 	}
 	
-	
+	//end of coverflow ptactices------------------------------------------------------------------------
 	
 	//end of sliding pannels------------------------------------------------------------------------
 	
