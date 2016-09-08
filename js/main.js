@@ -1,312 +1,4 @@
 jQuery(document).ready(function($){
-	$('.cd-intro-content').css('transition', '1s ease-in');
-	
-	//variables
-	var hijacking= $('body').data('hijacking'),
-		animationType = $('body').data('animation'),
-		delta = 0,
-        scrollThreshold = 5,
-        actual = 1,
-        animating = false;
-    
-    //DOM elements
-    var sectionsAvailable = $('.cd-section'),
-    	verticalNav = $('.cd-arrow'),
-    	prevArrow = verticalNav.find('a.cd-prev'),
-    	nextArrow = verticalNav.find('a.cd-next');
-
-	
-	//check the media query and bind corresponding events
-	var MQ = deviceType(),
-		bindToggle = false;
-	
-	bindEvents(MQ, true);
-	
-	$(window).on('resize', function(){
-		MQ = deviceType();
-		bindEvents(MQ, bindToggle);
-		if( MQ == 'mobile' ) bindToggle = true;
-		if( MQ == 'desktop' ) bindToggle = false;
-	});
-
-    function bindEvents(MQ, bool) {
-    	
-    	if( MQ == 'desktop' && bool) {   		
-    		//bind the animation to the window scroll event, arrows click and keyboard
-			if( hijacking == 'on' ) {
-				initHijacking();
-				$(window).on('DOMMouseScroll mousewheel', scrollHijacking);
-			} else {
-				scrollAnimation();
-				$(window).on('scroll', scrollAnimation);
-			}
-			prevArrow.on('click', prevSection);
-    		nextArrow.on('click', nextSection);
-    		$('#down').on('click', nextSection);
-    		/*$(window).on('mousewheel', function(e){
-		        if(e.originalEvent.wheelDelta > 0) {
-		            prevSection();
-		        }
-		        else{
-		            nextSection();
-		        }
-		    });*/
-    		
-    		$(document).on('keydown', function(event){
-				if( event.which=='40' && !nextArrow.hasClass('inactive') ) {
-					event.preventDefault();
-					nextSection();
-				} else if( event.which=='38' && (!prevArrow.hasClass('inactive') || (prevArrow.hasClass('inactive') && $(window).scrollTop() != sectionsAvailable.eq(0).offset().top) ) ) {
-					event.preventDefault();
-					prevSection();
-				}
-			});
-			
-			//set navigation arrows visibility
-			checkNavigation();
-		} else if( MQ == 'mobile' ) {
-			//reset and unbind
-			resetSectionStyle();
-			$(window).off('DOMMouseScroll mousewheel', scrollHijacking);
-			$(window).off('scroll', scrollAnimation);
-			prevArrow.off('click', prevSection);
-    		nextArrow.off('click', nextSection);
-    		$('#down').off('click', nextSection);
-    		$(window).off('mousewheel');
-    		$(document).off('keydown');
-		}
-    }
-
-	function scrollAnimation(){
-		//normal scroll - use requestAnimationFrame (if defined) to optimize performance
-		(!window.requestAnimationFrame) ? animateSection() : window.requestAnimationFrame(animateSection);
-	}
-
-	function animateSection() {
-		var scrollTop = $(window).scrollTop(),
-			windowHeight = $(window).height(),
-			windowWidth = $(window).width();
-		
-		sectionsAvailable.each(function(){
-			var actualBlock = $(this),
-				offset = scrollTop - actualBlock.offset().top;
-
-			//according to animation type and window scroll, define animation parameters
-			var animationValues = setSectionAnimation(offset, windowHeight, animationType);
-			
-			transformSection(actualBlock.children('div'), animationValues[0], animationValues[1], animationValues[2], animationValues[3], animationValues[4]);
-			( offset >= 0 && offset < windowHeight ) ? actualBlock.addClass('visible') : actualBlock.removeClass('visible');		
-		});
-		
-		checkNavigation();
-	}
-
-	function transformSection(element, translateY, scaleValue, rotateXValue, opacityValue, boxShadow) {
-		//transform sections - normal scroll
-		element.velocity({
-			translateY: translateY+'vh',
-			scale: scaleValue,
-			rotateX: rotateXValue,
-			opacity: opacityValue,
-			boxShadowBlur: boxShadow+'px',
-			translateZ: 0,
-		}, 0);
-	}
-
-	function initHijacking() {
-		// initialize section style - scrollhijacking
-		var visibleSection = sectionsAvailable.filter('.visible'),
-			topSection = visibleSection.prevAll('.cd-section'),
-			bottomSection = visibleSection.nextAll('.cd-section'),
-			animationParams = selectAnimation(animationType, false),
-			animationVisible = animationParams[0],
-			animationTop = animationParams[1],
-			animationBottom = animationParams[2];
-
-		visibleSection.children('div').velocity(animationVisible, 1, function(){
-			visibleSection.css('opacity', 1);
-	    	topSection.css('opacity', 1);
-	    	bottomSection.css('opacity', 1);
-		});
-        topSection.children('div').velocity(animationTop, 0);
-        bottomSection.children('div').velocity(animationBottom, 0);
-	}
-
-	function scrollHijacking (event) {
-		// on mouse scroll - check if animate section
-        if (event.originalEvent.detail < 0 || event.originalEvent.wheelDelta > 0) { 
-            delta--;
-            ( Math.abs(delta) >= scrollThreshold) && prevSection();
-        } else {
-            delta++;
-            (delta >= scrollThreshold) && nextSection();
-        }
-        return false;
-    }
-
-    function prevSection(event) {
-    	//go to previous section
-    	typeof event !== 'undefined' && event.preventDefault();
-    	
-    	var visibleSection = sectionsAvailable.filter('.visible'),
-    		middleScroll = ( hijacking == 'off' && $(window).scrollTop() != visibleSection.offset().top) ? true : false;
-    	visibleSection = middleScroll ? visibleSection.next('.cd-section') : visibleSection;
-
-    	var animationParams = selectAnimation(animationType, middleScroll, 'prev');
-    	unbindScroll(visibleSection.prev('.cd-section'), animationParams[3]);
-
-        if( !animating && !visibleSection.is(":first-child") ) {
-        	animating = true;
-            visibleSection.removeClass('visible').children('div').velocity(animationParams[2], animationParams[3], animationParams[4])
-            .end().prev('.cd-section').addClass('visible').children('div').velocity(animationParams[0] , animationParams[3], animationParams[4], function(){
-            	animating = false;
-            	if( hijacking == 'off') $(window).on('scroll', scrollAnimation);
-            });
-            
-            actual = actual - 1;
-        }
-
-        resetScroll();
-    }
-
-    function nextSection(event) {
-    	//go to next section
-    	typeof event !== 'undefined' && event.preventDefault();
-
-        var visibleSection = sectionsAvailable.filter('.visible'),
-    		middleScroll = ( hijacking == 'off' && $(window).scrollTop() != visibleSection.offset().top) ? true : false;
-
-    	var animationParams = selectAnimation(animationType, middleScroll, 'next');
-    	unbindScroll(visibleSection.next('.cd-section'), animationParams[3]);
-
-        if(!animating && !visibleSection.is(":last-of-type") ) {
-            animating = true;
-            visibleSection.removeClass('visible').children('div').velocity(animationParams[1], animationParams[3], animationParams[4] )
-            .end().next('.cd-section').addClass('visible').children('div').velocity(animationParams[0], animationParams[3], animationParams[4], function(){
-            	animating = false;
-            	if( hijacking == 'off') $(window).on('scroll', scrollAnimation);
-            });
-
-            actual = actual +1;
-        }
-        $('.cd-intro-content').css('transition', '');
-        resetScroll();
-    }
-
-    function unbindScroll(section, time) {
-    	//if clicking on navigation - unbind scroll and animate using custom velocity animation
-    	if( hijacking == 'off') {
-    		$(window).off('scroll', scrollAnimation);
-    		( animationType == 'catch') ? $('body, html').scrollTop(section.offset().top) : section.velocity("scroll", { duration: time });
-    	}
-    }
-
-    function resetScroll() {
-        delta = 0;
-        checkNavigation();
-    }
-
-    function checkNavigation() {
-    	//update navigation arrows visibility
-		/*( sectionsAvailable.filter('.visible').is(':first-of-type') ) ? prevArrow.addClass('inactive') : prevArrow.removeClass('inactive');
-		( sectionsAvailable.filter('.visible').is(':last-of-type')  ) ? nextArrow.addClass('inactive') : nextArrow.removeClass('inactive');*/
-		if (sectionsAvailable.filter('.visible').is(':first-of-type')) {
-			prevArrow.addClass('inactive');
-			/*nextArrow.css('visibility', 'hidden');*/
-			$('.cd-arrow a').css('display', 'none');
-		}
-		else {
-			$('.cd-arrow a').css('display', 'block');
-			prevArrow.removeClass('inactive');
-			/*nextArrow.css('visibility', 'visible');*/
-		}
-		( sectionsAvailable.filter('.visible').is(':last-of-type')  ) ? nextArrow.addClass('inactive') : nextArrow.removeClass('inactive');
-    }
-
-	function resetSectionStyle() {
-		//on mobile - remove style applied with jQuery
-		sectionsAvailable.children('div').each(function(){
-			$(this).attr('style', '');
-		});
-	}
-
-	function deviceType() {
-		//detect if desktop/mobile
-		return window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/"/g, "").replace(/'/g, "");
-	}
-
-	function selectAnimation(animationName, middleScroll, direction) {
-		// select section animation - scrollhijacking
-		var animationVisible = 'translateNone',
-			animationTop = 'translateUp',
-			animationBottom = 'translateDown',
-			easing = 'ease',
-			animDuration = 800;
-
-		switch(animationName) {
-		    case 'parallax':
-		    	animationTop = 'translateUp.half';
-		    	easing = 'easeInCubic';
-		        break;
-		}
-
-		return [animationVisible, animationTop, animationBottom, animDuration, easing];
-	}
-
-	function setSectionAnimation(sectionOffset, windowHeight, animationName ) {
-		// select section animation - normal scroll
-		var scale = 1,
-			translateY = 100,
-			rotateX = '0deg',
-			opacity = 1,
-			boxShadowBlur = 0;
-		
-		if( sectionOffset >= -windowHeight && sectionOffset <= 0 ) {
-			// section entering the viewport
-			translateY = (-sectionOffset)*100/windowHeight;
-
-		} else if( sectionOffset > 0 && sectionOffset <= windowHeight ) {
-			//section leaving the viewport - still has the '.visible' class
-			translateY = (-sectionOffset)*100/windowHeight;
-			
-			switch(animationName) {
-				case 'parallax':
-					translateY = (-sectionOffset)*50/windowHeight;
-					break;
-
-			}
-
-		} else if( sectionOffset < -windowHeight ) {
-			//section not yet visible
-			translateY = 100;
-
-		} else {
-			//section not visible anymore
-			translateY = -100;
-
-			switch(animationName) {
-				case 'parallax':
-					translateY = -50;
-					break;
-			}
-		}
-
-		return [translateY, scale, rotateX, opacity, boxShadowBlur]; 
-	}
-	
-	//menu navigation-------------------------------------------------------------------------------------------------
-	$('#main-menu').on('click', 'a', function(event){
-        event.preventDefault();
-        smoothScroll($(this.hash));
-    });
-    
-    function smoothScroll(target) {
-        $('body,html').animate(
-        	{'scrollTop':target.offset().top},
-        	1000
-        );
-	}
-	//end of menu navigation-------------------------------------------------------------------------------------------
 	
 	// maps------------------------------------------------------------------------------------------------------------
 	//set your google maps parameters
@@ -540,7 +232,337 @@ jQuery(document).ready(function($){
   	map.controls[google.maps.ControlPosition.LEFT_TOP].push(zoomControlDiv);
 	// end of maps--------------------------------------------------------------------------------------------------------
 	
-	// form---------------------------------------------------------------------------------------------------------------
+	//variables
+	var hijacking= $('body').data('hijacking'),
+		animationType = $('body').data('animation'),
+		delta = 0,
+        scrollThreshold = 5,
+        actual = 1,
+        animating = false;
+    
+    //DOM elements
+    var sectionsAvailable = $('.cd-section'),
+    	verticalNav = $('.cd-vertical-nav'),
+    	arrowNav = $('.cd-arrow'),
+    	prevArrow = arrowNav.find('a.cd-prev'),
+    	nextArrow = arrowNav.find('a.cd-next');
+
+	//( sectionsAvailable.filter('.visible').is(':first-of-type') ) ? verticalNav.addClass('hidden') : verticalNav.removeClass('hidden');
+	
+	//check the media query and bind corresponding events
+	var MQ = deviceType(),
+		bindToggle = false;
+	
+	bindEvents(MQ, true);
+	
+	$(window).on('resize', function(){
+		MQ = deviceType();
+		bindEvents(MQ, bindToggle);
+		if( MQ == 'mobile' ) bindToggle = true;
+		if( MQ == 'desktop' ) bindToggle = false;
+	});
+
+    function bindEvents(MQ, bool) {
+    	
+    	if( MQ == 'desktop' && bool) {   		
+    		//bind the animation to the window scroll event, arrows click and keyboard
+			if( hijacking == 'on' ) {
+				initHijacking();
+				$(window).on('DOMMouseScroll mousewheel', scrollHijacking);
+			} else {
+				scrollAnimation();
+				$(window).on('scroll', scrollAnimation);
+			}
+			prevArrow.on('click', prevSection);
+    		nextArrow.on('click', nextSection);
+    		
+    		$(document).on('keydown', function(event){
+				if( event.which=='40' && !nextArrow.hasClass('inactive') ) {
+					event.preventDefault();
+					nextSection();
+				} else if( event.which=='38' && (!prevArrow.hasClass('inactive') || (prevArrow.hasClass('inactive') && $(window).scrollTop() != sectionsAvailable.eq(0).offset().top) ) ) {
+					event.preventDefault();
+					prevSection();
+				}
+			});
+			//set navigation arrows visibility
+			checkNavigation();
+		} else if( MQ == 'mobile' ) {
+			//reset and unbind
+			resetSectionStyle();
+			$(window).off('DOMMouseScroll mousewheel', scrollHijacking);
+			$(window).off('scroll', scrollAnimation);
+			prevArrow.off('click', prevSection);
+    		nextArrow.off('click', nextSection);
+    		$(document).off('keydown');
+		}
+    }
+
+	function scrollAnimation(){
+		//normal scroll - use requestAnimationFrame (if defined) to optimize performance
+		(!window.requestAnimationFrame) ? animateSection() : window.requestAnimationFrame(animateSection);
+	}
+
+	function animateSection() {
+		var scrollTop = $(window).scrollTop(),
+			windowHeight = $(window).height(),
+			windowWidth = $(window).width();
+		
+		sectionsAvailable.each(function(){
+			var actualBlock = $(this),
+				offset = scrollTop - actualBlock.offset().top;
+
+			//according to animation type and window scroll, define animation parameters
+			var animationValues = setSectionAnimation(offset, windowHeight, animationType);
+			
+			transformSection(actualBlock.children('div'), animationValues[0], animationValues[1], animationValues[2], animationValues[3], animationValues[4]);
+			( offset >= 0 && offset < windowHeight ) ? actualBlock.addClass('visible') : actualBlock.removeClass('visible');		
+		});
+		
+		checkNavigation();
+	}
+
+	function transformSection(element, translateY, scaleValue, rotateXValue, opacityValue, boxShadow) {
+		//transform sections - normal scroll
+		element.velocity({
+			translateY: translateY+'vh',
+			scale: scaleValue,
+			rotateX: rotateXValue,
+			opacity: opacityValue,
+			boxShadowBlur: boxShadow+'px',
+			translateZ: 0,
+		}, 0);
+	}
+
+	function initHijacking() {
+		// initialize section style - scrollhijacking
+		var visibleSection = sectionsAvailable.filter('.visible'),
+			topSection = visibleSection.prevAll('.cd-section'),
+			bottomSection = visibleSection.nextAll('.cd-section'),
+			animationParams = selectAnimation(animationType, false),
+			animationVisible = animationParams[0],
+			animationTop = animationParams[1],
+			animationBottom = animationParams[2];
+
+		visibleSection.children('div').velocity(animationVisible, 1, function(){
+			visibleSection.css('opacity', 1);
+	    	topSection.css('opacity', 1);
+	    	bottomSection.css('opacity', 1);
+		});
+        topSection.children('div').velocity(animationTop, 0);
+        bottomSection.children('div').velocity(animationBottom, 0);
+	}
+
+	function scrollHijacking (event) {
+		// on mouse scroll - check if animate section
+        if (event.originalEvent.detail < 0 || event.originalEvent.wheelDelta > 0) { 
+            delta--;
+            ( Math.abs(delta) >= scrollThreshold) && prevSection();
+        } else {
+            delta++;
+            (delta >= scrollThreshold) && nextSection();
+        }
+        return false;
+    }
+
+    function prevSection(event) {
+    	//go to previous section
+    	typeof event !== 'undefined' && event.preventDefault();
+    	
+    	var visibleSection = sectionsAvailable.filter('.visible'),
+    		middleScroll = ( hijacking == 'off' && $(window).scrollTop() != visibleSection.offset().top) ? true : false;
+    	visibleSection = middleScroll ? visibleSection.next('.cd-section') : visibleSection;
+
+    	var animationParams = selectAnimation(animationType, middleScroll, 'prev');
+    	unbindScroll(visibleSection.prev('.cd-section'), animationParams[3]);
+
+        if( !animating && !visibleSection.is(":first-child") ) {
+        	animating = true;
+            visibleSection.removeClass('visible').children('div').velocity(animationParams[2], animationParams[3], animationParams[4])
+            .end().prev('.cd-section').addClass('visible').children('div').velocity(animationParams[0] , animationParams[3], animationParams[4], function(){
+            	animating = false;
+            	if( hijacking == 'off') $(window).on('scroll', scrollAnimation);
+            });
+            
+            actual = actual - 1;
+        }
+
+        resetScroll();
+        if (!(sectionsAvailable.filter('.visible').is(':first-of-type'))) {
+			verticalNav.css('visibility', 'visible');
+		}
+		else verticalNav.css('visibility', 'hidden');
+    }
+
+    function nextSection(event) {
+    	//go to next section
+    	typeof event !== 'undefined' && event.preventDefault();
+
+        var visibleSection = sectionsAvailable.filter('.visible'),
+    		middleScroll = ( hijacking == 'off' && $(window).scrollTop() != visibleSection.offset().top) ? true : false;
+
+    	var animationParams = selectAnimation(animationType, middleScroll, 'next');
+    	unbindScroll(visibleSection.next('.cd-section'), animationParams[3]);
+
+        if(!animating && !visibleSection.is(":last-of-type") ) {
+            animating = true;
+            visibleSection.removeClass('visible').children('div').velocity(animationParams[1], animationParams[3], animationParams[4] )
+            .end().next('.cd-section').addClass('visible').children('div').velocity(animationParams[0], animationParams[3], animationParams[4], function(){
+            	animating = false;
+            	if( hijacking == 'off') $(window).on('scroll', scrollAnimation);
+            });
+
+            actual = actual +1;
+        }
+        resetScroll();
+        if (!(sectionsAvailable.filter('.visible').is(':first-of-type'))) {
+			verticalNav.css('visibility', 'visible');
+		}
+		else verticalNav.css('visibility', 'hidden');
+    }
+    
+
+    function unbindScroll(section, time) {
+    	//if clicking on navigation - unbind scroll and animate using custom velocity animation
+    	if( hijacking == 'off') {
+    		$(window).off('scroll', scrollAnimation);
+    		( animationType == 'catch') ? $('body, html').scrollTop(section.offset().top) : section.velocity("scroll", { duration: time });
+    	}
+    }
+
+    function resetScroll() {
+        delta = 0;
+        checkNavigation();
+    }
+
+    function checkNavigation() {
+    	//update navigation arrows visibility
+		( sectionsAvailable.filter('.visible').is(':first-of-type') ) ? prevArrow.addClass('inactive') : prevArrow.removeClass('inactive');
+		( sectionsAvailable.filter('.visible').is(':last-of-type')  ) ? nextArrow.addClass('inactive') : nextArrow.removeClass('inactive');
+	}
+
+	function resetSectionStyle() {
+		//on mobile - remove style applied with jQuery
+		sectionsAvailable.children('div').each(function(){
+			$(this).attr('style', '');
+		});
+	}
+
+	function deviceType() {
+		//detect if desktop/mobile
+		return window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/"/g, "").replace(/'/g, "");
+	}
+
+	function selectAnimation(animationName, middleScroll, direction) {
+		// select section animation - scrollhijacking
+		var animationVisible = 'translateNone',
+			animationTop = 'translateUp',
+			animationBottom = 'translateDown',
+			easing = 'ease',
+			animDuration = 800;
+
+		    	animationTop = 'translateUp.half';
+		    	easing = 'easeInCubic';
+
+		return [animationVisible, animationTop, animationBottom, animDuration, easing];
+	}
+
+	function setSectionAnimation(sectionOffset, windowHeight, animationName ) {
+		// select section animation - normal scroll
+		var scale = 1,
+			translateY = 100,
+			rotateX = '0deg',
+			opacity = 1,
+			boxShadowBlur = 0;
+		
+		if( sectionOffset >= -windowHeight && sectionOffset <= 0 ) {
+			// section entering the viewport
+			translateY = (-sectionOffset)*100/windowHeight;
+
+		} else if( sectionOffset > 0 && sectionOffset <= windowHeight ) {
+			//section leaving the viewport - still has the '.visible' class
+			translateY = (-sectionOffset)*100/windowHeight;
+		
+					translateY = (-sectionOffset)*50/windowHeight;
+
+		} else if( sectionOffset < -windowHeight ) {
+			//section not yet visible
+			translateY = 100;
+
+		} else {
+			//section not visible anymore
+			translateY = -100;
+		}
+
+		return [translateY, scale, rotateX, opacity, boxShadowBlur]; 
+	}
+	
+	//menu navigation-----------------------------------------------------------------
+	var	scrolling = false;
+		navigationItems = verticalNav.find('a'),
+		navTrigger = $('.cd-nav-trigger'),
+		scrollArrow = $('.cd-scroll-down');
+
+	$(window).on('scroll', checkScroll);
+
+	//smooth scroll to the selected section
+	verticalNav.on('click', 'a', function(event){
+        event.preventDefault();
+        smoothScroll($(this.hash));
+        verticalNav.removeClass('open');
+    });
+    $('#main-menu').on('click', 'a', function(event){
+        event.preventDefault();
+        smoothScroll($(this.hash));
+    });
+
+    //smooth scroll to the second section
+    scrollArrow.on('click', function(event){
+    	event.preventDefault();
+        smoothScroll($(this.hash));
+    });
+
+	// open navigation if user clicks the .cd-nav-trigger - small devices only
+    navTrigger.on('click', function(event){
+    	event.preventDefault();
+    	verticalNav.toggleClass('open');
+    	verticalNav.css('visibility', 'visible');
+    });
+
+	function checkScroll() {
+		if( !scrolling ) {
+			scrolling = true;
+			(!window.requestAnimationFrame) ? setTimeout(updateSections, 300) : window.requestAnimationFrame(updateSections);
+		}
+	}
+
+	function updateSections() {
+		var halfWindowHeight = $(window).height()/2,
+			scrollTop = $(window).scrollTop();
+		sectionsAvailable.each(function(){
+			var section = $(this),
+				sectionId = section.attr('id'),
+				navigationItem = navigationItems.filter('[href^="#'+ sectionId +'"]');
+				//menuItem = menuItems.filter('[href^="#'+ sectionId +'"]');
+			( (section.offset().top - halfWindowHeight < scrollTop ) && ( section.offset().top + section.height() - halfWindowHeight > scrollTop) )
+				? navigationItem.addClass('active')
+				: navigationItem.removeClass('active');
+		});
+		scrolling = false;
+		if ($('.cd-section').filter('.visible').is(':first-of-type')) {
+			verticalNav.css('visibility', 'hidden');
+		}
+		else verticalNav.css('visibility', 'visible');
+	}
+
+	function smoothScroll(target) {
+        $('body,html').animate(
+        	{'scrollTop':target.offset().top},
+        	1000
+        );
+	}
+	//end of menu navigation------------------------------------------------------------------------------
+	
 	if( $('.floating-labels').length > 0 ) floatLabels();
 
 	function floatLabels() {
@@ -558,7 +580,6 @@ jQuery(document).ready(function($){
 	function checkVal(inputField) {
 		( inputField.val() == '' ) ? inputField.prev('.cd-label').removeClass('float') : inputField.prev('.cd-label').addClass('float');
 	}
-	// end of form--------------------------------------------------------------------------------------------------------
 	
 	//sliding pannels--------------------------------------------------------------
 	//cache DOM elements
@@ -566,7 +587,8 @@ jQuery(document).ready(function($){
 		projectsPreviewWrapper = projectsContainer.find('.cd-projects-previews'),
 		projectPreviews = projectsPreviewWrapper.children('li'),
 		projects = projectsContainer.find('.cd-projects'),
-		navigationTrigger = $('#section5 .cd-close-menu'),
+		navigationTrigger = $('#section3 .cd-close-menu'),
+		navigation = $('.cd-primary-nav'),
 		//if browser doesn't support CSS transitions...
 		transitionsNotSupported = ( $('.no-csstransitions').length > 0);
 
@@ -671,9 +693,9 @@ jQuery(document).ready(function($){
 				if( projectIndex != -1) {
 					projects.children('li.selected').addClass('content-visible');
 					projectsPreviewWrapper.eq(projectIndex).addClass('slide-out').removeClass('selected');
-				} /*else if( navigation.hasClass('nav-visible') && bool ) {
+				} else if( navigation.hasClass('nav-visible') && bool ) {
 					navigation.addClass('nav-clickable');
-				}*/
+				}
 				projectsPreviewWrapper.eq(randomProjectIndex).off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
 				animating = false;
 			});
@@ -696,131 +718,82 @@ jQuery(document).ready(function($){
             uniqueRandoms.push(i);
         }
 	}
-	
-	
-	//coverflow practices------------------------------------------------------------------------
-	var additional = '',
-		quantity = $('#preview-coverflow>div').length,
-		cycles = 4,
-		n = quantity * cycles / 2;
-	for (var i = 0; i < cycles; i++) {
-		additional += ($('#preview-coverflow').html());
-	}
-	$('.cover:last-of-type').after(additional);
-	
-	
-	
-	$('#preview-coverflow').coverflow({
-		index:			n,
-		density:		2,
-		innerOffset:	50,
-		innerScale:		.7,
-		animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
-			if (isVisible) {
-				if (isMiddle) {
-					$(cover).css({
-						'filter':			'none',
-						'-webkit-filter':	'none'
-					});
-				} else {
-					var brightness	= 1 + Math.abs(sin),
-						contrast	= 1 - Math.abs(sin),
-						filter		= 'contrast('+contrast+') brightness('+brightness+')';
-					$(cover).css({
-						'filter':			filter,
-						'-webkit-filter':	filter
-					});
-				}
-			}
-		}
-	});
-	
-	
-	
-	
-	var sliderContainers = $('.cd-slider-wrapper');
-	if($(window).width() > 767) {
-		$('.cd-slider .image').append('<h1>ПРАКТИКИ</h1>');
-	}
-	
-	$('.slider-for').slick({
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		arrows: false,
-		fade: true,
-		asNavFor: '.slider-nav'
-	});
-	$('.slider-nav').slick({
-    	slidesToShow: 3,
-    	slidesToScroll: 1,
-    	asNavFor: '.slider-for',
-    	dots: true,
-    	centerMode: true,
-    	focusOnSelect: true
-	});
-
-	if( sliderContainers.length > 0 ) initBlockSlider(sliderContainers);
-
-	function initBlockSlider(sliderContainers) {
-		sliderContainers.each(function(){
-			var sliderContainer = $(this),
-				slides = sliderContainer.children('.cd-slider').children('li');
-				//sliderPagination = createSliderPagination(sliderContainer);
-
-			if($(window).width() < 768) {
-				$('.cd-slider-wrapper').css('height', $(window).height() - $('.slider-nav').height());
-				$('.slick-slide p').css('margin-top', ($('.slick-slide').height() - $('.slick-slide p').height()) / 2);
-				$('.slick-slide p').css('margin-bottom', ($('.slick-slide').height() - $('.slick-slide p').height()) / 2);
-				$('.slider-nav div').on('focus', function(event){
-					event.preventDefault();
-					var selected = $(this),
-						index = selected.data('number');
-					updateSlider(index, slides);
-				});
-			}
-			else {
-				$('.cover').on('click', function(event){
-					event.preventDefault();
-					var selected = $(this),
-						index = selected.data('number');
-					updateSlider(index, slides);
-				});
-			}
-
-			sliderContainer.on('swipeleft', function(){
-				var bool = enableSwipe(sliderContainer),
-					visibleSlide = sliderContainer.find('.is-visible').last(),
-					visibleSlideIndex = visibleSlide.index();
-				if(!visibleSlide.is(':last-child') && bool) {updateSlider(visibleSlideIndex + 1, sliderPagination, slides);}
-			});
-
-			sliderContainer.on('swiperight', function(){
-				var bool = enableSwipe(sliderContainer),
-					visibleSlide = sliderContainer.find('.is-visible').last(),
-					visibleSlideIndex = visibleSlide.index();
-				if(!visibleSlide.is(':first-child') && bool) {updateSlider(visibleSlideIndex - 1, sliderPagination, slides);}
-			});
-		});
-	}
-
-	function updateSlider(n, slides) {
-		//navigation.removeClass('selected').eq(n).addClass('selected');
-		slides.eq(n).addClass('is-visible').removeClass('covered').prevAll('li').addClass('is-visible covered').end().nextAll('li').removeClass('is-visible covered');
-
-		//fixes a bug on Firefox with ul.cd-slider-navigation z-index
-		/*navigation.parent('ul').addClass('slider-animating').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-			$(this).removeClass('slider-animating');
-		});*/
-	}
-
-	function enableSwipe(container) {
-		return ( container.parents('.touch').length > 0 );
-	}
-	
-	//end of coverflow ptactices------------------------------------------------------------------------
-	
 	//end of sliding pannels------------------------------------------------------------------------
 	
+	//industries-----------------------------------------------------------------------------------
+	//open menu
+	$('.cd-menu-trigger').on('click', function(event){
+		event.preventDefault();
+		$('#main-nav').css('visibility', 'visible');
+		$('#cd-main-content').addClass('move-out');
+		$('#main-nav').addClass('is-visible');
+		$('.cd-shadow-layer').addClass('is-visible');
+	});
+
+	//clipped image - blur effect
+	set_clip_property();
+	$(window).on('resize', function(){
+		set_clip_property();
+	});
+
+	function set_clip_property() {
+		var $header_height = $('.cd-header').height(),
+			$window_height = $(window).height(),
+			$header_top = $window_height - $header_height,
+			$window_width = $(window).width();
+		$('.cd-blurred-bg').css('clip', 'rect('+$header_top+'px, '+$window_width+'px, '+$window_height+'px, 0px)');
+	}
+	
+	$('#main-nav li:first-of-type').on('click', function(event) {
+		event.preventDefault();
+		$('#main-nav').addClass('move-out');
+		$('#first').css('visibility', 'visible');
+		$('#first').addClass('is-visible');
+		$('.cd-close-menu').addClass('inner');
+		$('.cd-shadow-layer').addClass('is-visible');
+	});
+	$('#main-nav li:nth-of-type(2)').on('click', function(event) {
+		event.preventDefault();
+		$('#main-nav').addClass('move-out');
+		$('#second').addClass('is-visible');
+		$('#second').css('visibility', 'visible');
+		$('.cd-close-menu').addClass('inner');
+		$('.cd-shadow-layer').addClass('is-visible');
+	});
+	$('#main-nav li:nth-of-type(3)').on('click', function(event) {
+		event.preventDefault();
+		$('#main-nav').addClass('move-out');
+		$('#third').addClass('is-visible');
+		$('#third').css('visibility', 'visible');
+		$('.cd-close-menu').addClass('inner');
+		$('.cd-shadow-layer').addClass('is-visible');
+	});
+	$('#main-nav li:nth-of-type(4)').on('click', function(event) {
+		event.preventDefault();
+		$('#main-nav').addClass('move-out');
+		$('#forth').addClass('is-visible');
+		$('#forth').css('visibility', 'visible');
+		$('.cd-close-menu').addClass('inner');
+		$('.cd-shadow-layer').addClass('is-visible');
+	});
+	
+	
+	$('.cd-close-menu').on('click', function(event){
+		event.preventDefault();
+		if ($('.cd-close-menu').hasClass('inner')) {
+			$('#main-nav').removeClass('move-out');
+			$('.industry').removeClass('is-visible');
+			$('.industry').css('visibility', 'hidden');
+			$('.cd-close-menu').removeClass('inner');
+			$('.cd-shadow-layer').removeClass('is-visible');
+		}
+		else {
+			$('#cd-main-content').removeClass('move-out');
+			$('#main-nav').removeClass('is-visible');
+			$('.cd-shadow-layer').removeClass('is-visible');
+		}
+	});
+	//end of industries-----------------------------------------------------------------------------
 });
 
 /* Custom effects registration - feature available in the Velocity UI pack */
