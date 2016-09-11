@@ -343,20 +343,6 @@ jQuery(document).ready(function($){
         /*var target = $(this).attr('href');
         $('.cd-section').filter(target).scrollTop += target.offset().top;*/
 	};
-	
-	
-	var verticalNav = $('.cd-vertical-nav');
-	var	scrolling = false;
-		navigationItems = verticalNav.find('a'),
-		navTrigger = $('.cd-nav-trigger');
-		//scrollArrow = $('.cd-scroll-down');
-
-	// open navigation if user clicks the .cd-nav-trigger - small devices only
-    navTrigger.on('click', function(event){
-    	event.preventDefault();
-    	verticalNav.toggleClass('open');
-    	verticalNav.css('visibility', 'visible');
-    });
 	//end of menu navigation-------------------------------------------------------------------------------------------
 	
 	// maps------------------------------------------------------------------------------------------------------------
