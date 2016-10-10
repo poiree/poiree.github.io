@@ -1,0 +1,6 @@
+хост: ваш_домен 
+IP: 93.190.41.24
+логин: uh372975
+пароль: PQKuqX544G
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqsAZpsaWdvL3107Y8Ks84G6VIK32Y9Q4"></script>
