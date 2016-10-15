@@ -11,7 +11,76 @@ jQuery(document).ready(function($){
 		delta = 0,
         scrollThreshold = 5,
         actual = 1,
-        animating = false;
+        animating = false,
+        loaded_3 = false,
+        loaded_4 = false,
+        loaded_5 = false,
+        loaded_7 = false;
+        
+    function imageLoad_5() {
+    	$('.cd-projects-previews a, .cd-projects .preview-image').css('background', '#5b927d url(../img/agri.jpg) no-repeat center center');
+		$('.cd-projects-previews a, .cd-projects .preview-image').css('background-size', 'cover');
+		$('.cd-projects-previews li:nth-of-type(2) a, .cd-projects > li:nth-of-type(2) .preview-image').css('background', '#a8ae7e url(../img/alt_en.jpg) no-repeat center center');
+		$('.cd-projects-previews li:nth-of-type(2) a, .cd-projects > li:nth-of-type(2) .preview-image').css('background-size', 'cover');
+		$('.cd-projects-previews li:nth-of-type(3) a, .cd-projects > li:nth-of-type(3) .preview-image').css('background', '#e7d5a4 url(../img/it.jpg) no-repeat center center');
+		$('.cd-projects-previews li:nth-of-type(3) a, .cd-projects > li:nth-of-type(3) .preview-image').css('background-size', 'cover');
+		$('.cd-projects-previews li:nth-of-type(4) a, .cd-projects > li:nth-of-type(4) .preview-image').css('background', '#835531 url(../img/media.jpg) no-repeat center center');
+		$('.cd-projects-previews li:nth-of-type(4) a, .cd-projects > li:nth-of-type(4) .preview-image').css('background-size', 'cover');
+		loaded_5 = true;
+    }
+    function imageLoad_4() {
+    	$('.cd-slider li:nth-of-type(2n + 1) .image').css('background-image', 'url(../img/ptc-1.jpg)');
+    	$('.cd-slider li:nth-of-type(2n + 2) .image').css('background-image', 'url(../img/ptc-2.jpg)');
+    	$('.cover:nth-of-type(8n + 1)').css('background', 'url(../img/practices-sprite.jpg) 0 0');
+    	$('.cover:nth-of-type(8n + 1)').css('background-size' , '200%');
+    	$('.cover:nth-of-type(8n + 2)').css('background', 'url(../img/practices-sprite.jpg) 100% 0');
+    	$('.cover:nth-of-type(8n + 2)').css('background-size' , '200%');
+    	$('.cover:nth-of-type(8n + 3)').css('background', 'url(../img/practices-sprite.jpg) 0 33.333333333333336%');
+    	$('.cover:nth-of-type(8n + 3)').css('background-size' , '200%');
+    	$('.cover:nth-of-type(8n + 4)').css('background', 'url(../img/practices-sprite.jpg) 100% 33.333333333333336%');
+    	$('.cover:nth-of-type(8n + 4)').css('background-size' , '200%');
+    	$('.cover:nth-of-type(8n + 5)').css('background', 'url(../img/practices-sprite.jpg) 0 66.66666666666667%');
+    	$('.cover:nth-of-type(8n + 5)').css('background-size' , '200%');
+    	$('.cover:nth-of-type(8n + 6)').css('background', 'url(../img/practices-sprite.jpg) 100% 66.66666666666667%');
+    	$('.cover:nth-of-type(8n + 6)').css('background-size' , '200%');
+    	$('.cover:nth-of-type(8n + 7)').css('background', 'url(../img/practices-sprite.jpg) 0 100%');
+    	$('.cover:nth-of-type(8n + 7)').css('background-size' , '200%');
+    	$('.cover:nth-of-type(8n + 8)').css('background', 'url(../img/practices-sprite.jpg) 100% 100%');
+    	$('.cover:nth-of-type(8n + 8)').css('background-size' , '200%');
+    	loaded_4 = true;
+    }
+    function imageLoad_3() {
+    	var src = $('[data-type="member-1"] figure img').attr('data-src');
+    	$('[data-type="member-1"] figure img').attr('src', src);
+    	src = $('[data-type="member-2"] figure img').attr('data-src');
+    	$('[data-type="member-2"] figure img').attr('src', src);
+    	src = $('[data-type="member-3"] figure img').attr('data-src');
+    	$('[data-type="member-3"] figure img').attr('src', src);
+    	src = $('[data-type="member-4"] figure img').attr('data-src');
+    	$('[data-type="member-4"] figure img').attr('src', src);
+    	src = $('[data-type="member-5"] figure img').attr('data-src');
+    	$('[data-type="member-5"] figure img').attr('src', src);
+    	src = $('[data-type="member-6"] figure img').attr('data-src');
+    	$('[data-type="member-6"] figure img').attr('src', src);
+    	src = $('.member-1 img').attr('data-src');
+    	$('.member-1 img').attr('src', src);
+    	src = $('.member-2 img').attr('data-src');
+    	$('.member-2 img').attr('src', src);
+    	src = $('.member-3 img').attr('data-src');
+    	$('.member-3 img').attr('src', src);
+    	src = $('.member-4 img').attr('data-src');
+    	$('.member-4 img').attr('src', src);
+    	src = $('.member-5 img').attr('data-src');
+    	$('.member-5 img').attr('src', src);
+    	src = $('.member-6 img').attr('data-src');
+    	$('.member-6 img').attr('src', src);
+    	loaded_3 = true;
+    }
+    function imageLoad_7() {
+    	$('#section7>div').css('background', 'url(../img/grey_wash_wall.png) repeat');
+    	$('#section7>div').css('height', '100%');
+    	loaded_7 = true;
+    }
     
     //DOM elements
     var sectionsAvailable = $('.cd-section'),
@@ -197,6 +266,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_5) {
+				imageLoad_5();
+			}
 		}
 		else if (visibleSection.is('#section3')) {
 			$('.menu-list>li:nth-of-type(3) div').animate({
@@ -205,6 +277,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_4) {
+				imageLoad_4();
+			}
 		}
 		else if (visibleSection.is('#section6')) {
 			$('.menu-list>li:nth-of-type(5) div').animate({
@@ -213,6 +288,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_3) {
+				imageLoad_3();
+			}
 		}
 		else if (visibleSection.is('#section7')) {
 			$('.menu-list>li:nth-of-type(6) div').animate({
@@ -269,6 +347,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_5) {
+				imageLoad_5();
+			}
 		}
 		else if (visibleSection.is('#section5')) {
 			$('.menu-list>li:nth-of-type(3) div').animate({
@@ -277,6 +358,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_4) {
+				imageLoad_4();
+			}
 		}
 		else if (visibleSection.is('#section4')) {
 			$('.menu-list>li:nth-of-type(5) div').animate({
@@ -285,6 +369,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_3) {
+				imageLoad_3();
+			}
 		}
 		else if (visibleSection.is('#section3')) {
 			$('.menu-list>li:nth-of-type(6) div').animate({
@@ -293,6 +380,11 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+		}
+		else if (visibleSection.is('#section6')) {
+			if (!loaded_7) {
+				imageLoad_7();
+			}
 		}
     }
 
@@ -442,6 +534,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_5) {
+				imageLoad_5();
+			}
 		}
 		else if (target.is('#section4')) {
 			$('.menu-list>li:nth-of-type(3) div').animate({
@@ -450,6 +545,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_4) {
+				imageLoad_4();
+			}
 		}
 		else if (target.is('#section3')) {
 			$('.menu-list>li:nth-of-type(5) div').animate({
@@ -458,6 +556,9 @@ jQuery(document).ready(function($){
 				marginLeft: '-5px',
 				marginTop: '-10px'
 			});
+			if (!loaded_3) {
+				imageLoad_3();
+			}
 		}
 		else if (target.is('#section6')) {
 			$('.menu-list>li:nth-of-type(6) div').animate({
@@ -482,7 +583,10 @@ jQuery(document).ready(function($){
     });
 	//end of menu navigation-------------------------------------------------------------------------------------------
 	
-	$('#section6').on('click', 'a', function(event){
+	$('#section6 address ul:nth-of-type(2)>li:nth-of-type(2)').on('click', 'a', function(event) {
+		if (!loaded_7) {
+			imageLoad_7();
+		}
         event.preventDefault();
         smoothScroll($(this.hash));
     });
@@ -1002,7 +1106,7 @@ jQuery(document).ready(function($){
 	//bio--------------------------------------------------------------------------------------------
 	var is_firefox = navigator.userAgent.indexOf('Firefox') > -1;
 
-	var pad = ($('#section3 .cd-container').width() * 0.31 - $('#section3 img').width()) / 2;
+	var pad = ($('#section3 .cd-container').width() * 0.31 - $(window).height() * 0.25 * 440 / 356) / 2;//$('#section3 img').width()) / 2;
 	$('#section3 li').css('padding-left', pad);
 	$('#section3 li').css('padding-right', pad);
 	
