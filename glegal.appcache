@@ -1,7 +1,6 @@
 CACHE MANIFEST
 # 2016-11-11 v1.0.0
-/en/index.html
-/uk/index.html
+index.html
 /includes/css/style.min.css
 /includes/js/main.js
 /includes/img/about_big.jpg
@@ -67,6 +66,12 @@ https://csi.gstatic.com/csi?v=2&s=mapsapi3&v3v=26.14&action=apiboot2&e=10_1_0,10
 https://ide50-eugeniaty.cs50.io/includes/fonts/slick.ttf
 https://maps.googleapis.com/maps-api-v3/api/js/26/14/stats.js
 https://csi.gstatic.com/csi?v=2&s=mapsapi3&v3v=26.14&action=apiboot2&e=10_1_0,10_2_0&rt=main.18
+https://csi.gstatic.com/csi?v=2&s=mapsapi3&v3v=26.14&action=map2&firstmap=t…366x662&hadviewport=true&e=10_1_0,10_2_0&rt=firsttile.1359,firstpixel.1360
+https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i17!2i76651!3i44199!1m4!1m…cy5lOmx8cC5jOiNmZmZmZmZmZg!4e3!12m1!5b1&callback=_xdc_._3630nr&token=96506
+https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i17!2i76657!3i44201!1m4!1m…cy5lOmx8cC5jOiNmZmZmZmZmZg!4e3!12m1!5b1&callback=_xdc_._85po5l&token=96993
+https://maps.googleapis.com/maps/api/js/AuthenticationService.Authenticate?…AIzaSyDqsAZpsaWdvL3107Y8Ks84G6VIK32Y9Q4&callback=_xdc_._1pbkew&token=30616
+https://csi.gstatic.com/csi?v=2&s=mapsapi3&v3v=26.14&action=map2&firstmap=t…66x662&hadviewport=true&e=10_1_0,10_2_0&rt=tilesloaded.1455,allpixels.1455
+https://maps.googleapis.com/maps/api/js/QuotaService.RecordEvent?1shttp%3A%…L3107Y8Ks84G6VIK32Y9Q4&5e0&6u1&7sdrdjej&callback=_xdc_._116qv5&token=14961
 
 #FALLBACK:
 #/html/ /offline.html
