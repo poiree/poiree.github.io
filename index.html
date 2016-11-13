@@ -10,14 +10,23 @@
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="includes/css/style.min.css"> <!-- Resource style -->
+	<link rel="stylesheet" type="text/css" href="includes/css/slick.css"/>
+	<!-- Add the new slick-theme.css if you want the default styling -->
+	<link rel="stylesheet" type="text/css" href="includes/css/slick-theme.css"/>
+	<link href="includes/css/prettify.css" rel="stylesheet" type="text/css"/>
+	
+	<link rel="stylesheet" href="includes/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="includes/css/style.css"> <!-- Resource style -->
+	<script src="includes/js/modernizr.js"></script> <!-- Modernizr -->
   	
 	<title>Gutovska & Partners</title>
 	<link rel="SHORTCUT ICON" href="includes/img/favicon.png" type="image/x-icon">
 </head>
 <!-- hijacking: on/off - animation: none/scaleDown/rotate/gallery/catch/opacity/fixed/parallax -->
 
-<!--<div class="loader"></div>-->
+<body data-hijacking="off" data-animation="parallax">
+	
+	<!--<div class="loader"></div>-->
 	<div class="cssload-loading">
 		<div class="cssload-loading-circle cssload-loading-row1 cssload-loading-col3"></div>
 		<div class="cssload-loading-circle cssload-loading-row2 cssload-loading-col2"></div>
@@ -453,7 +462,7 @@
 				<li>
 					<a href="#0" data-type="member-1">
 						<figure>
-							<img src="includes/img/olga_g.jpg" alt="Team member 1">
+							<img src="/includes/img/olga_g.jpg" alt="Team member 1">
 							<div class="cd-img-overlay"><span>View Bio</span></div>
 						</figure>
 
@@ -466,7 +475,7 @@
 				<li>
 					<a href="#0" data-type="member-2">
 						<figure>
-							<img src="includes/img/tetyana_k.jpg" alt="Team member 1">
+							<img src="/includes/img/tetyana_k.jpg" alt="Team member 1">
 							<div class="cd-img-overlay"><span>View Bio</span></div>
 						</figure>
 
@@ -479,7 +488,7 @@
 				<li>
 					<a href="#0" data-type="member-3">
 						<figure>
-							<img src="includes/img/bogdan_k.jpg" alt="Team member 1">
+							<img src="/includes/img/bogdan_k.jpg" alt="Team member 1">
 							<div class="cd-img-overlay"><span>View Bio</span></div>
 						</figure>
 
@@ -492,7 +501,7 @@
 				<li>
 					<a href="#0" data-type="member-4">
 						<figure>
-							<img src="includes/img/viktor_m.jpg" alt="Team member 1">
+							<img src="/includes/img/viktor_m.jpg" alt="Team member 1">
 							<div class="cd-img-overlay"><span>View Bio</span></div>
 						</figure>
 
@@ -505,7 +514,7 @@
 				<li>
 					<a href="#0" data-type="member-5">
 						<figure>
-							<img src="includes/img/oleksij_g.jpg" alt="Team member 1">
+							<img src="/includes/img/oleksij_g.jpg" alt="Team member 1">
 							<div class="cd-img-overlay"><span>View Bio</span></div>
 						</figure>
 
@@ -518,7 +527,7 @@
 				<li>
 					<a href="#0" data-type="member-6">
 						<figure>
-							<img src="includes/img/mykyta_g.jpg" alt="Team member 1">
+							<img src="/includes/img/mykyta_g.jpg" alt="Team member 1">
 							<div class="cd-img-overlay"><span>View Bio</span></div>
 						</figure>
 
@@ -542,11 +551,11 @@
 			<address>
 				<ul>
 					<li>01021, Kyiv, Klovskiy uzviz 6, 1st floor</li>
-					<li>(044) 229-79-01<a href="tel:+380442297901">   <img src="includes/img/call.svg"></a></li>
+					<li>(044) 229-79-01<a href="tel:+380442297901">   <img src="/includes/img/call.svg"></a></li>
 				</ul>
 				<ul>
 					<li>PR and partnership:</li>
-					<li><a href="#section7">office@gutovskapartners.com</a>   <a href="#section7"><img src="includes/img/mailto.svg"></a></li>
+					<li><a href="#section7">office@gutovskapartners.com</a>   <a href="#section7"><img src="/includes/img/mailto.svg"></a></li>
 				</ul>
 				<p>Copyright © 2016 Gutovska & Partners. All rights reserved.</p>
 			</address> 
@@ -629,24 +638,24 @@
 	
 	<div class="cd-member-bio member-1">
 		<!--<div class="cd-member-bio-pict">
-			<img src="../includes/img/member-bio-img-1.jpg" alt="Member Bio image">
+			<img src="/includes/img/member-bio-img-1.jpg" alt="Member Bio image">
 		</div>--> <!-- cd-member-bio-pict -->
 
 		<div class="cd-bio-content">
 			<h1>Meet Olga Gutovska</h1>
-			<img src="includes/img/olga_g.jpg">
+			<img src="/includes/img/olga_g.jpg">
 			<p><a href="mailto:OlgaGutovska@gutovskapartners.com">OlgaGutovska@gutovskapartners.com</a></p>
 		</div> <!-- cd-bio-content -->
 	</div> <!-- cd-member-bio -->
 
 	<div class="cd-member-bio member-2">
 		<!--<div class="cd-member-bio-pict">
-			<img src="../includes/img/member-bio-img-2.jpg" alt="Member Bio image">
+			<img src="/includes/img/member-bio-img-2.jpg" alt="Member Bio image">
 		</div>--> <!-- cd-member-bio-pict -->
 
 		<div class="cd-bio-content">
 			<h1>Meet Tetyana Kostyshyn</h1>
-			<img src="includes/img/tetyana_k.jpg">
+			<img src="/includes/img/tetyana_k.jpg">
 			<p><a href="mailto:TetyanaKostyshyn@gutovskapartners.com">TetyanaKostyshyn@gutovskapartners.com</a></p>
 			<p>Practices: Corporate Governance, Labor and Employment Law, Agricultural law</p>
 			<p>Education: Taras Shevchenko National University of Kyiv, law faculty; Mykolas Romeris University, law faculty</p>
@@ -656,12 +665,12 @@
 
 	<div class="cd-member-bio member-3">
 		<!--<div class="cd-member-bio-pict">
-			<img src="../includes/img/member-bio-img-3.jpg" alt="Member Bio image">
+			<img src="/includes/img/member-bio-img-3.jpg" alt="Member Bio image">
 		</div>--> <!-- cd-member-bio-pict -->
 
 		<div class="cd-bio-content">
 			<h1>Meet Bogdan Kotovych</h1>
-			<img src="includes/img/bogdan_k.jpg">
+			<img src="/includes/img/bogdan_k.jpg">
 			<p><a href="mailto:B.Kotovych@gutovskapartners.com">B.Kotovych@gutovskapartners.com</a></p>
 			<p>Practices: Dispute resolution, Agricultural law, Taxes</p>
 			<p>Education: Ivan Franko National University of Lviv, law faculty</p>
@@ -673,12 +682,12 @@
 	
 	<div class="cd-member-bio member-4">
 		<!--<div class="cd-member-bio-pict">
-			<img src="../includes/img/member-bio-img-3.jpg" alt="Member Bio image">
+			<img src="/includes/img/member-bio-img-3.jpg" alt="Member Bio image">
 		</div>--> <!-- cd-member-bio-pict -->
 
 		<div class="cd-bio-content">
 			<h1>Meet Victor Marchan</h1>
-			<img src="includes/img/viktor_m.jpg">
+			<img src="/includes/img/viktor_m.jpg">
 			<p><a href="mailto:V.Marchan@gutovskapartners.com">V.Marchan@gutovskapartners.com</a></p>
 			<p>Practices: Intellectual property and IT, Taxes</p>
 			<p>Education: Ukrainian State University of Finance and International Trade, international law faculty</p>
@@ -689,12 +698,12 @@
 	
 	<div class="cd-member-bio member-5">
 		<!--<div class="cd-member-bio-pict">
-			<img src="../includes/img/member-bio-img-3.jpg" alt="Member Bio image">
+			<img src="/includes/img/member-bio-img-3.jpg" alt="Member Bio image">
 		</div>--> <!-- cd-member-bio-pict -->
 
 		<div class="cd-bio-content">
 			<h1>Meet Oleksij Gromov</h1>
-			<img src="includes/img/oleksij_g.jpg">
+			<img src="/includes/img/oleksij_g.jpg">
 			<p><a href="mailto:O.Gromov@gutovskapartners.com">O.Gromov@gutovskapartners.com</a></p>
 			<p>Practices: Corporate Governance, Mergers and Acquisitions</p>
 			<p>Education: National Academy of Internal Affairs, law faculty</p>
@@ -711,7 +720,7 @@
 
 		<div class="cd-bio-content">
 			<h1>Meet Mykyta Gorgiladze</h1>
-			<img src="includes/img/mykyta_g.jpg">
+			<img src="/includes/img/mykyta_g.jpg">
 			<p><a href="mailto:M.Gorgiladze@gutovskapartners.com">M.Gorgiladze@gutovskapartners.com</a></p>
 			<p>Practices: Corporate Governance, Mediation</p>
 			<p>Education: National University "Odesa Academy of Law", law faculty</p>
@@ -723,11 +732,19 @@
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="/includes/js/velocity.min.js"></script>
+<script src="/includes/js/velocity.ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min.js"></script>
-<script src="includes/js/main.js"></script>
+<script src="/includes/js/jquery.mobile.custom.min.js"></script>
+<script src="/includes/js/prettify.js"></script>
+<!-- Plugin -->
+<script src="/includes/js/jquery.coverflow.js"></script>
+<!-- Optionals -->
+<script src="/includes/js/jquery.interpolate.js"></script>
+<script src="/includes/js/jquery.touchSwipe.min.js"></script>
+<script src="/includes/js/slick.js" type="text/javascript" charset="utf-8"></script>
+<script src="/includes/js/throttle-debounce.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/includes/js/main.js"></script> <!-- Resource jQuery -->
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-<!--<script id="__bs_script__">//<![CDATA[
-    document.write("<script async src='https://HOST:3000/browser-sync/browser-sync-client.2.13.0.js'><\/script>".replace("HOST", location.hostname));
-//]]></script>-->
 </body>
 </html>
