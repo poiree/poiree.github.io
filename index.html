@@ -1,16 +1,40 @@
 <!doctype html>
-
+<html>
 <head>
+	<meta charset="UTF-8">
 	<title>Calendar</title>
+	<link href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
-	<div id="header"></div>
-	<div id="nav"></div>
-	<table>
-		<thead></thead>
-	</table>
-	
+	<div id="header">
+		<button id="adding">Добавить</button>
+		<button id="refresh">Обновить</button>
+		<form id="search-form">
+			<input type="search" name="s" id="search-field" placeholder="Событие, дата или участник"/>
+			<input type="submit" id="search" value=""/>
+		</form>
+	</div>
+	<div id="nav">
+		<button class="arrow" id="left"></button>
+		<button class="arrow" id="right"></button>
+		<button>Сегодня</button>
+	</div>
+	<div class="event-creation pop">
+	  	<form method="post" id="new_message" action="/messages">
+	    	<input type="text" placeholder="Событие" size="30" name="event" id="event"/>
+	    	<input type="text" size="30" name="date" id="date" placeholder="День, месяц, год"/>
+	    	<input type="text" size="30" name="participants" id="participants" placeholder="Имена участников"/>
+	    	<textarea rows="6" name="description" id="description" cols="35" placeholder="Описание"></textarea>
+	    	<input type="submit" value="Готово" name="commit" id="event_submit"/>
+	    	<input type="button" value="Удалить" id="remove"/>
+	  	</form>
+	</div>
+	<table></table>
+
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script src="main.js"></script>
 </body>
+</html>
