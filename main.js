@@ -234,6 +234,7 @@ function calendarInit(numMonth, year, date, weekDay, events) {
 					if (numMonth == splitDate[0] - 1) {
 						if (date == splitDate[1]) {
 							$('tr:last-child td:last-child').append('<p>' + events[e].event + '</p><p>' + events[e].participants + '</p>');
+							$('tr:last-child td:last-child').css('background-color', '#ADE5E5');
 						}
 					}
 				}
@@ -438,15 +439,16 @@ $(document).ready(function(){
 			$('.pop #participants').attr('value', '');
 			$('.pop #description').val('');
 		}
-		if($(this).hasClass('selected')) {
+		/*if($(this).hasClass('selected')) {
 			$('.pop').slideFadeToggle(function() {
 				$(this).removeClass('selected');
 			});
 		}
 		else {
-			$(this).addClass('selected');
+			$(this).addClass('selected');*/
 			$('.pop').slideFadeToggle();
-		}
+		//}
+		if ($(window).height() < $(window).width()) {
 		var index = $('td').index($(this)) % 7,
 			line = Math.floor($('td').index($(this)) / 7);
 		if (index < 4) {
@@ -468,6 +470,7 @@ $(document).ready(function(){
 		else {
 			$('.pop').css('bottom', $(window).height() - $('body').height());
 			$('.pop').css('top', 'auto');
+		}
 		}
 		return false;
 	});
@@ -584,5 +587,10 @@ $(document).ready(function(){
 		}
 		$('.pop').slideFadeToggle();
 		created = true;
+	});
+
+	$('.pop').on('click', '#close', function() {
+		debugger;
+		$('.pop').slideFadeToggle();
 	});
 });

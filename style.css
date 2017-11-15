@@ -54,6 +54,7 @@ table h6 {
 
 #search-field {
     width: 300px;
+    border-radius: 2px;
 }
 
 #search {
@@ -84,6 +85,7 @@ button:focus {
     border: 1px #C9C8C8 solid;
     border-radius: 2px;
     margin-right: 5px;
+    vertical-align: middle;
 }
 
 #right:before {
@@ -114,6 +116,8 @@ button:focus {
     background-color: #fff;
     border: 1px #C9C8C8 solid;
     border-radius: 2px;
+    height: 20px;
+    vertical-align: middle;
 }
 
 
@@ -125,25 +129,56 @@ a.selected {
 }
 
 .event-creation {
-  background-color:#FFFFFF;
-  border:1px solid #999999;
-  cursor:default;
-  display:none;
-  position:absolute;
-  text-align:left;
-  /*width:394px;*/
-  z-index:50;
-  padding: 25px 25px 20px;
-  top: 30%;
-  left: 40%;
+    background-color:#FFFFFF;
+    border:1px solid #C2D0D0;
+    box-shadow: 0 0 10px #C2D0D0;
+    border-radius: 2px;
+    cursor:default;
+    display:none;
+    position:absolute;
+    text-align:left;
+    z-index:50;
+    padding: 25px 25px 20px;
+    top: 30%;
+    left: 40%;
+}
+
+#close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    opacity: 0.3;
+}
+
+#close:hover {
+    opacity: 1;
+}
+
+#close:before, #close:after {
+    position: absolute;
+    content: ' ';
+    height: 10px;
+    width: 2px;
+    background-color: #333;
+}
+
+#close:before {
+    transform: rotate(45deg);
+}
+
+#close:after {
+    transform: rotate(-45deg);
 }
 
 .event-creation input, .event-creation textarea {
-  border-bottom: 1px solid #EFEFEF;
-  margin: 8px 0;
-  padding-bottom: 8px;
-  width: 200px;
-  display: block;
+    border-bottom: 1px solid #C2D0D0;
+    border-radius: 2px;
+    margin: 8px 0;
+    padding-bottom: 8px;
+    width: 200px;
+    display: block;
 }
 
 .event-creation input:nth-of-type(5),
@@ -151,6 +186,7 @@ a.selected {
     width: auto;
     display: inline-block;
     border-radius: 5px;
+    background-color: #fff;
 }
 
 ul {
@@ -171,7 +207,7 @@ li {
     padding: 15px 0;
 }
 
-@media /*only screen and */(max-width: 747px) {
+@media only screen and (orientation: portrait) {
     #header button {
         height: 50px;
         font-size: 24px;
@@ -180,8 +216,41 @@ li {
         height: 50px;
         font-size: 20px;
     }
+    #search-field {
+        width: 400px;
+    }
     #search {
         width: 50px;
         background-size: 50px;
+    }
+    #nav {
+        font-size: 36px;
+    }
+    .arrow {
+        height: 50px;
+        width: 50px;
+    }
+    #nav button:nth-of-type(3) {
+        font-size: 24px;
+        height: 50px;
+    }
+    .event-creation {
+        width: 80%;
+        left: 10%;
+        top: 180px;
+    }
+    .event-creation input, .event-creation textarea {
+        width: 90%;
+        font-size: 24px;
+    }
+    .event-creation input {
+        height: 50px;
+    }
+    #close:before, #close:after {
+        height: 20px;
+    }
+    #close {
+        right: 20px;
+        top: 20px;
     }
 }
