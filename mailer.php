@@ -31,7 +31,7 @@
         $email_headers = "From: $name <$email>";
 
         // Send the email.
-        if (mail($recipient, $subject, $email_content, $email_headers)) {
+        if (mail($recipient, $subject, $email_content, $email_headers, '-fchkeka@ukr.net')) {
             // Set a 200 (okay) response code.
             http_response_code(200);
             echo "Thank You! Your message has been sent.";

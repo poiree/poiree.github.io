@@ -6,9 +6,8 @@
 
 	<link href='https://fonts.googleapis.com/css?family=Vollkorn|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
-	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<!--<script src="js/modernizr.js"></script>--> <!-- Modernizr -->
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
 	<title>Eugenia Tytarenko</title>
@@ -20,29 +19,35 @@
 
 		</header>
 
-		<section id="intro" class="cd-fixed-bg cd-bg-1">
+		<section id="intro" class="cd-fixed-bg cd-bg-1 cd-intro">
 			<img src="img/photo.jpg" />
-			<h1>Eugenia Tytarenko</h1>
-			<h2>Junior Front-End Web Developer</h2>
+			<div class="cd-intro-content mask">
+				<h1 data-content="Eugenia Tytarenko"><span>Eugenia Tytarenko</span></h1>
+				<div class="subheading">
+					<h2>Junior Front-End Web Developer</h2>
+				</div>
+			</div>
 		</section>
 
 		<section id="about" class="cd-scrolling-bg cd-color">
+			<p class="heading">Here's a little something about me.</p>
 			<p>
-				I got my bachelor’s degree in applied mathematics from NTUU “KPI”. I have basic programming skills and SQL knowledge. As you can
-				see from my resume I don’t have any working experience in IT but aside from my technical education I’ve studied a lot on my own
-				while working on my last position which was not challenging at all. Absence of feeling of accomplishment drove me into studying
-				and learning new things including concepts and methodologies of quality assurance and software testing. So I am very eager to
-				work hard taking part in interesting developments and to learn from professionals working on real projects. During working in
-				advertising, beside dealing with large amounts of data, all of the client communication was done in English, so I have
-				experience with correspondence, reports, meetings and presentations in this language. I am also responsible, attentive with
-				strong analytical skills.
+				I got my bachelor’s degree in applied mathematics from NTUU “KPI”. At the end of my fourth year I started working at media
+				agency as a media planner. This meant that though my work had a lot to do with applied mathematics I had nothing to do with
+				any kind of programming while working there. So when I finally decided to try myself at software development I didn't have to
+				start from scratch by I had a lot of studying to do before I could start looking for any real work. So I went through a lot of
+				study courses, most of them online, and after that I started working on some projects to try things out in practice. Some of
+				my projects are purely educational and some are client projects. All of the most serious of those are listed further on this
+				page with detailed explanations about what they are about and how they were developed.
+			<p>
+				So now I am very eager to learn from professionals and to work hard taking part in interesting developments and projects on a
+				larger scale.
 			</p>
-			<p></p>
+			</p>
+			<p class="ending">Having said that, here's a main scope of my skills:</p>
 		</section>
 
 		<section id="skills" class="cd-fixed-bg cd-bg-2">
-			<p></p>
-			<p></p>
 			<ul>
 				<li>Theoretical knowledge of QA process and methodologies</li>
 				<li>Understanding of software development cycle</li>
@@ -50,11 +55,14 @@
 				<li>Basic programming skills (C, C#, javascript jQuery library)</li>
 				<li>Basic knowledge of html5</li>
 				<li>Basic CSS3 knowledge</li>
-				<li>Basic Wordpress knowledge</li>
+				<li>Basic Wordpress knowledge (with some e-commerce experience)</li>
 				<li>Basic knowledge of SQL</li>
 				<li>Basic Unix knowledge</li>
 				<li>Upper intermediate English</li>
 			</ul>
+			<p class="ending">
+				Next would be a list of projects working on which I gained some of my skills and tried others in practice.
+			</p>
 		</section>
 
 		<section id="portfolio" class="cd-scrolling-bg cd-color">
@@ -123,6 +131,9 @@
 		</section>
 
 		<section id="contacts" class="cd-fixed-bg cd-bg-3">
+			<p class="heading">
+				This is how you can reach me if you are in any way interested:
+			</p>
 			<div id="form-messages"></div>
 			<form id="ajax-contact" method="post" action="/mailer.php">
 			    <div class="field">
@@ -144,6 +155,11 @@
 			        <button type="submit">Send</button>
 			    </div>
 			</form>
+			<div class="social">
+				<a href="https://www.linkedin.com/in/eugenia-tytarenko/?locale=en_US"><img src="img/linkedin.svg" /></a>
+				<div><img src="img/email.svg" /><p>tytarenkoev@gmail.com</p></div>
+				<div><img src="img/skype.svg" /><p>evgeniya.tytarenko</p></div>
+			</div>
 		</section>
 	</main> <!-- .cd-main -->
 
@@ -164,6 +180,6 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous">
 </script>
-<script src="js/main.js"></script> <!-- Resource jQuery -->
+<script src="js/main.js"></script>
 </body>
 </html>
