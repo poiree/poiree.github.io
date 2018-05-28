@@ -53,6 +53,25 @@ header a, header a:active, header a:hover {
     filter:drop-shadow(3px 3px 10px rgba(0,0,0,0.2));
 }
 
+.dropdown-menu .dropdown-menu.show {
+    left:100% !important;
+    top: -37px !important;
+}
+
+.dropdown-menu .dropdown-toggle {
+    position:relative;
+}
+
+.dropdown-menu .dropdown-toggle::after {
+    border-left: .3em solid;
+    border-top: .3em solid transparent;
+    border-right: 0;
+    border-bottom: .3em solid transparent;
+    position: absolute;
+    right: 10px;
+    top: 35%;
+}
+
 #logo {
     padding:1rem 6rem;
     border:1px solid #18234b;
@@ -98,21 +117,37 @@ h3 {
 
 .products-container, .sections-container {
     display:flex;
-    margin-bottom:45px;
 }
 
 .products-item {
+    height:250px;
     min-width:19.5%;
     margin-right:0.625%;
+    background-image:url(../img/photo.jpg);
+    background-size:cover;
+}
+
+.products-item:nth-of-type(2) {
+    background-image:url(../img/photo2.jpg);
+}
+
+.products-item:nth-of-type(3) {
+    background-image:url(../img/images.jpg);
+}
+
+.products-item:nth-of-type(4) {
+    background-image:url(../img/product.jpg);
 }
 
 .products-item:last-child {
     margin-right:0;
+    background-image:url(../img/product2.jpg);
 }
 
 .products-item .overlay {
     height:100%;
     background:rgba(0,0,0,.5);
+    position:relative;
 }
 
 .products-item h4 {
@@ -121,23 +156,33 @@ h3 {
     text-align:center;
     text-transform:uppercase;
     background:rgba(0,0,0,.6);
+    line-height: 4;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+    width: 100%;
 }
 
 hr {
     width:60%;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.sections-container {
+    margin-bottom:45px;
 }
 
 .sections-item {
     min-width:49.6%;
-}
-
-.sections-item {
     margin-right:0.8%;
+    background-image:url(../img/lost-places.jpg);
+    background-size:cover;
 }
 
-.products-item img, .sections-item img {
-    width:100%;
-    height:auto;
+.sections-item:nth-of-type(2) {
+    background-image:url(../img/belgium.jpg);
+    margin-right:0;
 }
 
 .sections-item .overlay {
@@ -150,6 +195,7 @@ hr {
     text-transform:uppercase;
     color:#fefefe;
     text-align:center;
+    line-height:300px;
 }
 
 footer {
